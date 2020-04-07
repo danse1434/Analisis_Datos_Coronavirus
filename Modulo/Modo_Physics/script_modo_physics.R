@@ -21,6 +21,7 @@ require(RcppRoll)
 require(scales)
 require(gganimate)
 require(directlabels) # Rectas al final de gráficos
+require(lubridate)
 
 ##########################################################################-
 # Lectura de datos
@@ -67,6 +68,27 @@ data4 <- data1 %>%
   mutate(Casos_lw = if_else(Casos_lw == 0 | is.na(Casos_lw), 1E-16, Casos_lw))
 
 ##########################################################################-
+# Función de conversión fechas --------------------------------------------
+##########################################################################-
+
+#' Conversión de fechas a formato dd-mm-yy con abreviatura en mes
+#'
+#' @param date fecha en formato date
+#' @return (carácter) fecha en forma de carácter
+#' @examples
+#' conv_date(data4$Date)
+#' 
+conv_date <- function(date) {
+  x <- date %>% ymd()
+  
+  a = x %>% day()
+  b = x %>% month(label = TRUE, abbr = TRUE)
+  c = x %>% year()
+  
+  return(paste(a, b, c, sep = '--'))
+}
+
+##########################################################################-
 # Gráfico de comparación países de referencia -----------------------------
 ##########################################################################-
 # Vector con países de referencia
@@ -78,7 +100,7 @@ c5 <- c('US', 'Spain', 'Germany', 'France', 'Iran', 'Italy', 'China',
 data5 <- data4 %>%
   filter(Location %in% c5)
 
-# Gráfico Base
+# Preparación de gráfico base
 G_mp <- data5 %>% 
   ggplot(aes(x = Casos_Totales, y = Casos_lw, group = Location)) +
   # Datos de c5 
@@ -93,11 +115,11 @@ G_mp <- data5 %>%
              col = 'red', size = 3) +
   # Parámetros estéticos
   xlab('Casos Confirmados Totales') + ylab('Casos Nuevos 7d anteriores') +
+  # Aplicación de la función conv_date en la expresión "glue"
   labs(title = 'Trayectoria de Casos Confirmados de COVID-19',
-      subtitle = 'Fecha: {frame_along}',
-      caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
-                       "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
-                       "Adaptado a partir de Aatish Bhatia en colaboración con Minute Physics: https://aatishb.com/covidtrends \n",
+       subtitle = paste0('Fecha: ', "{conv_date(frame_along)}"), 
+      caption = paste0("Adaptado a partir de Aatish Bhatia en colaboración con Minute Physics: https://aatishb.com/covidtrends \n",
+                       "Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19. ",
                        a)) +
   coord_cartesian(ylim = c(10, 10 ^ (6)), xlim = c(10, 10 ^ (7))) +
   scale_y_log10(breaks = 10 ^ (0:6),
@@ -113,23 +135,36 @@ G_mp <- data5 %>%
   # Colombia
   geom_dl(data = data5 %>% filter(Location == 'Colombia'),
           aes(label = Location), col = 'red',
-          method = list(dl.trans(x = x * 1.05), "last.points", cex = 0.8)) 
+          method = list(dl.trans(x = x * 1.05), "last.points", cex = 0.8)) +
+  theme(panel.grid = element_line(colour = 'white'))
 
 # Visualización previa de gráfico base
 # G_mp
 
 ##########################################################################-
-# Elaboración de GIF
+# Elaboración de GIF ------------------------------------------------------
+##########################################################################-
+##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+##  1 Transición de tipo reveal para la variable *Date*
+##  2 Velocidad de transición cúbica
+##  3 Animar el objeto *G_manim* con resolución específica, terminar la 
+##  figura con 10 repeticiones y rebobinar en reversa.
+##  4 Almacenar en formato .gif
+##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 G_manim <- G_mp +
   transition_reveal(Date) +
   ease_aes(default = "cubic-out")
 
 # Almacenamiento de objeto en gif
-anim_save('Figuras/G_manim1.gif', animation = G_manim)
+animate(G_manim, end_pause = 10, rewind = TRUE, 
+        height = 680, width = 800, res = 140) 
+anim_save(file.path('Figuras', paste0(today(), "R5", ".gif")))
 
-# G_anim <- animate(G_manim, fps = 2)
-# anim_save('Figuras/G_manim2.gif', animation = G_anim)
+
+
+
+
 
 
 
