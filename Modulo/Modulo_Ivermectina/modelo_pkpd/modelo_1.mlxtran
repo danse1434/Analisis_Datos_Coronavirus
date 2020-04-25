@@ -1,0 +1,58 @@
+[LONGITUDINAL]
+input = {V1, V2, Cl, Q, Ktr, Mtt, ka, R, IC, hill, beta, gamma, delta}
+
+PK:
+; Transformacion de parametros
+V = V1 
+k = Cl/V1 
+k12 = Q/V1 
+k21 = Q/V2
+
+; Definicion del modelo PK
+compartment(cmt=1, volume=V, concentration=Cc)
+absorption(adm=1, cmt=1, Ktr, Mtt, ka)
+peripheral(k12, k21)
+elimination(cmt=1, k)
+
+EQUATION:
+odeType = stiff
+
+; Conversion a mcg/L
+y1 = Cc * 1000
+; Dentro de la funci?n, se recalcula la concentracion en mcM
+E = R/(1 + (y1/(IC * 875.10))^hill)
+Ec = 1 - max(E,1)
+
+; Ecuaci?n viral
+t_0 = 0
+f_0 = 1
+v_0 = 21.8
+
+ddt_f = - beta*f*v
+ ddt_v = (1 - Ec)*gamma*f*v - delta*v
+
+OUTPUT:
+output = {Cc, E, f, v}
+
+[INDIVIDUAL]
+
+input = {V1_pop, omega_V1, V2_pop, omega_V2, 
+        Cl_pop, omega_Cl, Q_pop, omega_Q,
+        Mtt_pop, omega_Mtt}
+
+
+DEFINITION:
+V1 = {distribution = lognormal, reference = V1_pop, sd = omega_V1}
+V2 = {distribution = lognormal, reference = V2_pop, sd = omega_V2}
+
+Cl = {distribution = lognormal, reference = Cl_pop, sd = omega_Cl}
+Q = {distribution = lognormal, reference = Q_pop, sd = omega_Q}
+
+Mtt = {distribution = lognormal, reference = Mtt_pop, sd = omega_Mtt}
+
+
+
+
+
+
+
