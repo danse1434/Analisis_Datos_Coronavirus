@@ -70,16 +70,17 @@ theme_set(theme_classic() +
 #' ggplot() + aux_param("D") 
 #' 
 aux_param <- function(x) {
-  list(coord_cartesian(xlim = c(0, 45), ylim = c(0, 4.0E4)),
+  list(coord_cartesian(xlim = c(0, 60), ylim = c(0, 6.0E4)),
        scale_color_viridis_d(option = x, name = ""), 
        scale_linetype_discrete(name = ""),
        scale_shape_discrete(name = ""),
        xlab("Días desde primer reporte"), ylab("Casos reportados"), 
        theme_bw(), 
-       theme(legend.position = c(0.3, 0.75),
+       theme(legend.position = c(0.35, 0.75),
              legend.title = element_blank(),
-             legend.spacing = unit(0.0, 'lines'),
-             legend.margin = margin(1, 1, 1, 1)))
+             legend.spacing.y = unit(1.0, 'mm'),
+             legend.text = element_text(size = 8,margin = margin(t = 0.1)),
+             legend.margin = margin(0.1, 0.1, 0.1, 0.1)))
 }
 
 ##########################################################################-
@@ -87,7 +88,7 @@ aux_param <- function(x) {
 
 # Vector con países de referencia internacional
 c1 = c('Colombia', 'Spain', 'France', 'Italy', 
-       'Japan', 'Korea, South', 'US')
+       'Japan', 'Korea, South', 'US', 'Germany')
 
 # Gráfico 1 - Vector 1 referencia internacional 
 G1 <- data1 %>%
@@ -97,6 +98,7 @@ G1 <- data1 %>%
              group = Location, colour = Location, 
              linetype = Location, shape = Location)) +
   geom_line() + geom_point() + 
+  guides(colour = guide_legend(ncol = 2)) +
   aux_param("D") 
   
 # Vector con países de referencia Latinoamérica
@@ -117,7 +119,7 @@ G2 <- data1 %>%
 G1_comp <- (G1 + G2) +
   plot_annotation(
     title = 'Reporte de casos acumulados COVID-19',
-    subtitle = 'Primeros 45 días desde reporte en países de referencia',
+    subtitle = 'Primeros 60 días desde reporte en países de referencia',
     caption = paste0(
       "Estos números no dicen nada sobre el número de personas infectadas, ",
       "sólo el número de personas quienes han sido positivas. \n",
@@ -312,7 +314,7 @@ G3 <- data1 %>%
   scale_y_log10(breaks = 10^(1:6),
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param("D") +
-  coord_cartesian(xlim = c(0, 50), ylim = c(1E0,1E5)) + 
+  coord_cartesian(xlim = c(0, 60), ylim = c(1E0,1E6)) + 
   labs(title = 'Curvas epidémicas de COVID19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso índice.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
@@ -330,11 +332,11 @@ G3 <- data1 %>%
 
 legend_dup <- tribble(
   ~ x, ~ y, ~ label, ~ rot,
-  10., 0.5 * 10 ^ 4, "Duplica diario",   63,
-  25., 5.0 * 10 ^ 3, "Duplica cada 2d",  45,
+  15., 0.5 * 10 ^ 5, "Duplica diario",   60,
+  30., 0.5 * 10 ^ 5, "Duplica cada 2d",  45,
   42., 5.0 * 10 ^ 4, "Duplica cada 3d",  00,
-  42., 2.5 * 10 ^ 1, "Duplica cada 7d",  00,
-  42., 2.2 * 10 ^ 0, "Duplica cada mes", 00)
+  55., 1.0 * 10 ^ 2, "Duplica cada 7d",  00,
+  55., 2.2 * 10 ^ 0, "Duplica cada mes", 00)
 
 
 # Creación de objeto G3 con leyendas en las guías de duplicación
@@ -400,10 +402,10 @@ G5 <- data3 %>%
   geom_line() + 
   # Seleccionar último punto
   geom_point(data = . %>% group_by(Location) %>% slice(which.max(dd))) + 
-  scale_y_log10(breaks = 10^(1:5),
+  scale_y_log10(breaks = 10^(1:6),
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param("D") +
-  coord_cartesian(xlim = c(0, 35), ylim = c(1E2, 1E5)) + 
+  coord_cartesian(xlim = c(0, 50), ylim = c(1E2, 1E6)) + 
   labs(title = 'Curvas epidémicas de COVID-19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso 100.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
@@ -422,11 +424,11 @@ G5 <- data3 %>%
 
 legend_dup1 <- tribble(
   ~ x, ~ y, ~ label, ~ rot,
-  7.3, 1.0 * 10 ^ 4, "Duplica diario",   62, 
-  12., 1.0 * 10 ^ 4, "Duplica cada 2d",  50,
-  30., 5.0 * 10 ^ 4, "Duplica cada 3d",  00,
+  7.3, 1.0 * 10 ^ 4, "Duplica diario",   65, 
+  23., 2.0 * 10 ^ 5, "Duplica cada 2d",  50,
+  40., 2.0 * 10 ^ 5, "Duplica cada 3d",  00,
   30., 1.0 * 10 ^ 3, "Duplica cada 7d",  00,
-  30., 1.8 * 10 ^ 2, "Duplica cada mes", 00)
+  36., 1.8 * 10 ^ 2, "Duplica cada mes", 00)
 
 # Creación de objeto G3 con leyendas en las guías de duplicación
 G6 <- G5 + 
@@ -437,9 +439,9 @@ G6 <- G5 +
 
 
 # Almacenamiento de objeto G4 en formato de *pdf* y *png*
-ggsave(file.path('Figuras', paste0(today(), "R4", ".pdf")), G6, width = 8, 
-       height = 6, device = 'pdf')
-
 ggsave(file.path('Figuras', paste0(today(), "R4", ".png")), 
        G6, width = 8, height = 6, device = 'png', dpi = 300)
+
+ggsave(file.path('Figuras', paste0(today(), "R4", ".pdf")), G6, width = 8, 
+       height = 6, device = 'pdf')
 

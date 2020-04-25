@@ -158,7 +158,7 @@ G_manim <- G_mp +
 
 # Almacenamiento de objeto en gif
 animate(G_manim, end_pause = 10, rewind = TRUE, 
-        height = 680, width = 800, res = 140) 
+        height = 680, width = 800, res = 140, duration = 30) 
 anim_save(file.path('Figuras', paste0(today(), "R5", ".gif")))
 
 
