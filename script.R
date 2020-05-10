@@ -12,16 +12,21 @@
 ## Email: dsparrag@unal.edu.co 
 ##------------------------------------------------------------------------#
 # Carga de paquetes
-library(magrittr)
-library(lubridate)
-library(tidyverse)
-library(grid)
-library(patchwork)
-library(gtable)
-library(ggrepel)
-library(readxl) # Lectura de archivos de Excel
-library(httr) # Lectura de vínculos https//
+library(magrittr)     #
+library(lubridate)    #
+library(rlang)        # Evaluación tardía
+library(tidyverse)    #
+library(grid)         #
+library(patchwork)    #
+library(gtable)       #  
+library(ggrepel)      # Ampliación de espacios entre puntos
+library(readxl)       # Lectura de archivos de Excel
+library(httr)         # Lectura de vínculos https//
 library(directlabels) # Rectas al final de gráficos
+
+#-------------------------------------------------------------------------------#
+# Carga de funciones definidas por usuario
+source("funciones.R")
 
 ##########################################################################-
 # Lectura de archivo de datos ---------------------------------------------
@@ -61,65 +66,53 @@ data1 <- data %>%
 theme_set(theme_classic() +
             theme(panel.border = element_rect(fill = NA, colour = 'black')))
 
-#' Función de parámetros auxiliares para añadir a gráficos
-#' @param x opción de paleta de colores para gráfico  "magma" ("A"), 
-#' "inferno" (or "B"), "plasma" (or "C"), "viridis" (or "D", predeterminado) 
-#' y "cividis" (or "E").
-#' @export lista de objetos *ggproto* con especificaciones de formato gráfico
-#' @examples
-#' ggplot() + aux_param("D") 
-#' 
-aux_param <- function(x) {
-  list(coord_cartesian(xlim = c(0, 60), ylim = c(0, 6.0E4)),
-       scale_color_viridis_d(option = x, name = ""), 
-       scale_linetype_discrete(name = ""),
-       scale_shape_discrete(name = ""),
-       xlab("Días desde primer reporte"), ylab("Casos reportados"), 
-       theme_bw(), 
-       theme(legend.position = c(0.35, 0.75),
-             legend.title = element_blank(),
-             legend.spacing.y = unit(1.0, 'mm'),
-             legend.text = element_text(size = 8,margin = margin(t = 0.1)),
-             legend.margin = margin(0.1, 0.1, 0.1, 0.1)))
-}
-
-##########################################################################-
 # Gráficos de referencia escala original
 
 # Vector con países de referencia internacional
-c1 = c('Colombia', 'Spain', 'France', 'Italy', 
-       'Japan', 'Korea, South', 'US', 'Germany')
+c1 = list(
+  # Original
+  orig = c('Colombia', 'Spain', 'France', 'Italy', 
+           'Japan', 'Korea, South', 'US', 'Germany'),
+  # Traducción para mostrar en gráfico
+  trad = c('Colombia', 'España', 'Francia', 'Italia', 
+           'Japón', 'Corea del Sur', 'EEUU', 'Alemania')
+)
 
 # Gráfico 1 - Vector 1 referencia internacional 
-G1 <- data1 %>%
-  filter(Location %in% c1) %>% 
-  mutate(Location = factor(Location, levels = c1)) %>% 
+G1 <- 
+  data1 %>%
+  filter(Location %in% c1$orig) %>% 
+  mutate(Location = factor(Location, levels = c1$orig)) %>% 
   ggplot(aes(x = dd, y = Casos_Totales, 
              group = Location, colour = Location, 
              linetype = Location, shape = Location)) +
   geom_line() + geom_point() + 
-  guides(colour = guide_legend(ncol = 2)) +
-  aux_param("D") 
-  
+  aux_param(c1)
+
 # Vector con países de referencia Latinoamérica
-c2 = c('Colombia', 'Brazil', 'Argentina', 'Chile', 'Peru', 'Ecuador')
+c2 = list(
+  # Original
+  orig = c('Colombia', 'Brazil', 'Argentina', 'Chile', 'Peru', 'Ecuador'),
+  # Traducción para mostrar en gráfico
+  trad = c('Colombia', 'Brasil', 'Argentina', 'Chile', 'Perú', 'Ecuador')
+)
 
 # Gráfico 2 - Vector 2 referencia internacional 
 G2 <- data1 %>%
-  filter(Location %in% c2) %>% # Filtrar países por c2
-  mutate(Location = factor(Location, levels = c2)) %>% # Ordenar
+  filter(Location %in% c2$orig) %>% # Filtrar países por c2
+  mutate(Location = factor(Location, levels = c2$orig)) %>% # Ordenar
   ggplot(aes(x = dd, y = Casos_Totales, 
              group = Location, colour = Location, 
              linetype = Location, shape = Location)) +
   geom_line() + geom_point() + 
-  aux_param("C")
+  aux_param(c2)
   
 ##########################################################################-
 # Almacenamiento de gráficos en PDF
 G1_comp <- (G1 + G2) +
   plot_annotation(
     title = 'Reporte de casos acumulados COVID-19',
-    subtitle = 'Primeros 60 días desde reporte en países de referencia',
+    subtitle = 'Primeros 80 días desde reporte en países de referencia',
     caption = paste0(
       "Estos números no dicen nada sobre el número de personas infectadas, ",
       "sólo el número de personas quienes han sido positivas. \n",
@@ -165,94 +158,47 @@ G_China <- data1 %>%
 ##  4 Filtrar aquellos países que lleven por lo menos 5 días desde el 
 ##  inicio de la epidemia.
 ##  5 Filtrar por país eliminando a China.
-##  6 Desagrupar en listas por locación.
+##  6 Agrupar a los datos en una columna-lista "data", excepto "Location".
+##  7 Aplicar la función *nls_function* con los datos en la columna-lista
+##  8 Aplicar la función summary.nls en la columna "model"
+##  9 Aplicar la función tidy para obtener parámetros estimados>-> "pr"
+##  10  Aplicar la función glance para obtener medidas de GOF  >-> "gl"
+##  11  Desanidar a "pr" y "gl" quedan como filas
+##  12  Calcular el día del año donde se dio inicio de reportes   >-> "firstd"
+##  13  Calcular la semana del año donde se dio inicio de reportes>-> "firstw"
+##  14  Calcular el número de filas en cada elemento de columna-lista
+##  15  Calcular el coef. de variación de estimación de thalf
+##  16  Calcular error de IC en distribución t.
+##  17  Renombrar a las columnas estimate >-> thalf_mn
+##  18  Renombrar a las columnas estimate >-> thalf_sd
 ##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 datalist <- data1 %>%
   mutate(dd1 = dd + 1) %>%
   group_by(Location) %>%
   filter(n() > 5) %>%
-  filter(Location != 'China') %>%
-  split(., .$Location)
-
-##########################################################################-
-#' Función de tipo exponencial parametrizada en tiempos de vida media
-#' @param x Archivo de datos que contiene datos de dd1 (días desde inicio 
-#' de epidemia), y total_cases (casos totales)
-#' @return objeto de tipo *nls* con resultados de regresión no lineal. 
-#'
-#' @examples
-#' nls_function(data1)
-#' datalist[['Chile']] %>% nls_function(.)
-#' 
-nls_function <- function(x) {
-  out <- tryCatch({
-    nls(Casos_Totales ~ exp(log(2) * dd1 / thalf),
-        data = x,
-        start = list(thalf = 5))
-  },
-  error = function(cond) {
-    message(cond)
-    return(NA)
-  },
-  warning = function(cond) {
-    message(cond)
-    return(NULL)
-  })
-  return(out)
-}
-
-##########################################################################-
-# Aplicación de la función nls_function a todos los elementos de la lista 
-# *datalist*, se descartan aquellos elementos que sólo sean vectores 
-# (arrojaron error).
-dl1 <- datalist %>%
-  map( ~ nls_function(.x)) %>% 
-  purrr::discard(~ is.vector(.x))
-
-##########################################################################-
-# Creación de objeto transformado a partir de *dl1*
-##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-##  1 Aplicar a función resumen a cada objeto de tipo _nls_
-##  2 Seleccionar parámetros dentro de la función resumen
-##  3 Crear data.frame con identidad de locación, resultados de parámetro.
-##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-dl2 <- dl1 %>%
-  map( ~ summary(.x)) %>% 
-  map( ~ magrittr::use_series(.x, 'parameters')) %>% 
-  map_dfr( ~ as.data.frame(.x), .id = 'Location')
-
-##########################################################################-
-# Creación de tabla *data2* con parámetros de tiempo de duplicación calculados 
-##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-##  1 Tomar data1
-##  2 Adicionar la tabla dl2 con los parámetros calculados mediante la 
-##  variable locación.
-##  3 Filtrar locaciones donde no se haya obtenido un estimado
-##  4 Agrupar por locación
-##  5 Resumir por locación primer día de inicio (firstd), primera semana de 
-##  epidemia (firstd), promedio de días estimados thalf (thalf_mn), sd de 
-##  días estimados (thalf_sd), número de datos usados para la estimación (n)
-##  6 Calcular el error para obtener IC95% basados en la prueba t
-##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-data2 <- data1 %>%
-  left_join(dl2, by = 'Location') %>%
-  filter(!is.na(Estimate)) %>%
-  group_by(Location) %>%
-  summarise(
-    firstd = yday(min(Date)),
-    firstw = epiweek(min(Date)),
-    thalf_mn = mean(Estimate),
-    thalf_sd = mean(`Std. Error`),
-    n = n() ) %>%
-  mutate(error = qt(0.975, df = n - 1) * thalf_sd / sqrt(n))
-
+  filter(Location != 'China') %>% 
+  nest() %>% 
+  mutate(model = map(data, ~nls_function(.x)),
+         summa = map(model, ~summary(.x)) ) %>%
+  mutate(pr = map(model, ~broom::tidy(.x)),
+         gl = map(model, ~broom::glance(.x))) %>% 
+  unnest(cols = c('pr', 'gl')) %>% 
+  mutate(firstd   = map_dbl(data, ~ yday(min(.x$Date))),
+         firstw   = map_dbl(data, ~ epiweek(min(.x$Date))),
+         N        = map_dbl(data, ~dim(.x)[[1]]),
+         RSD      = std.error/estimate,
+         error    = qt(0.975, df=N-1) * std.error/sqrt(N)) %>%
+  rename(thalf_mn = estimate,
+         thalf_sd = std.error) 
+  
 ##########################################################################-
 # Creación de gráfico de tiempo de duplicación vs día del año
-G_THALF <- data2 %>%
-  ggplot(aes(x = firstd, y = thalf_mn)) +
+
+set.seed(245)
+
+G_THALF <- datalist %>% 
+  ggplot(aes(x = firstd, y = thalf_mn, col = RSD)) +
   geom_errorbar(aes(ymin = thalf_mn - error,
                     ymax = thalf_mn + error)) +
   geom_point() +
@@ -262,47 +208,40 @@ G_THALF <- data2 %>%
   labs(title = 'Modelamiento tiempo de duplicación aparente por país', 
        subtitle = expression(T[1/2]~'duplicación de casos aparente por regresión no lineal vs día del año detección primer caso')) + 
   coord_cartesian(ylim = c(0, 15)) +
-  geom_point(data = data2 %>% filter(Location == 'Colombia'),
+  geom_point(data = filter(datalist, Location=='Colombia'),
              col = 'red') +
   geom_text_repel(aes(label = Location),
-                  data = data2 %>% filter(Location == 'Colombia'), 
-                  box.padding = unit(0.45, "lines"))
+                  data = filter(datalist, 
+                                Location%in%c(c1$orig, c2$orig)), 
+                  box.padding = unit(0.95, "lines"))
 
 # Almacenamiento de objeto G_THALF en formato de *pdf* y *png*
 ggsave(file.path('Figuras', paste0(today(), "R2", ".pdf")), G_THALF, 
-       width = 5.5, height = 5.0, device = 'pdf')
+       width = 6, height = 5.0, device = 'pdf')
 
 ggsave(file.path('Figuras', paste0(today(), "R2", ".png")), G_THALF, 
-       width = 5.5, height = 5.0, device = 'png', dpi = 300)
+       width = 6, height = 5.0, device = 'png', dpi = 300)
 
 ##########################################################################-
 # Curva epidémica con logs de crecimiento ---------------------------------
-##########################################################################-
-#' Función de adición de líneas guía de tiempo de duplicación
-#' @param t tiempo de duplicación a graficar
-#' @return lista con objeto stat_function que depende del eje x
-#' @examples
-#' ggplot() + ... + line_t(1)
-#' 
-line_t <- function(t) {
-  list(stat_function(fun = function(x) {2 ^ (x / t)},
-    inherit.aes = F, lty = 'dotted', colour = 'gray1'))
-  }
-
 ##########################################################################-
 # Gráfico en escala logarítmica con guías de tiempo de duplicación
 
 # Vector de selección de países de Suramérica para comparación
 # Se agregaron países adicionales de América del Sur
-c3 <- c(c2, 'Panama', 'Mexico', 'Bolivia', 'Uruguay', 'Paraguay', 
-        'Venezuela')
+c3 <- list(
+  orig = c(c2$orig, 'Panama', 'Mexico', 'Bolivia', 'Uruguay', 
+           'Paraguay', 'Venezuela'),
+  trad = c(c2$trad, 'Panama', 'México', 'Bolivia', 'Uruguay', 
+           'Paraguay', 'Venezuela')
+  )
 
 ##########################################################################-
 # Creación de objeto G3 en escala logarítmica
 G3 <- data1 %>%
   # Filtrar países de interés
-  filter(Location %in% c3) %>% 
-  mutate(Location = factor(Location, levels = c3)) %>%
+  filter(Location %in% c3$orig) %>% 
+  mutate(Location = factor(Location, levels = c3$orig)) %>%
   ggplot(aes(x = dd, y = Casos_Totales, 
              group = Location, colour = Location)) +
   # Guías de tiempo de duplicación
@@ -313,31 +252,34 @@ G3 <- data1 %>%
                slice(which.max(dd))) + 
   scale_y_log10(breaks = 10^(1:6),
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
-  aux_param("D") +
-  coord_cartesian(xlim = c(0, 60), ylim = c(1E0,1E6)) + 
+  aux_param(ls = c3, cond = 2) +
+  coord_cartesian(xlim = c(0, 80), ylim = c(1E0,1E6)) + 
   labs(title = 'Curvas epidémicas de COVID19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso índice.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
                         "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
                         a))+
   geom_dl(aes(label = Location),
-          method = list(dl.trans(x = x + 0.1), "last.points", cex = 0.8)) +
+          method = list(dl.trans(x = x + 0.12), "last.points", cex = 0.8)) +
   annotation_logticks(sides = 'l') +
   theme(panel.grid = element_line(colour = NA), 
         legend.position = "none",
+        panel.grid.major = element_line(colour = "gray96"),
         plot.caption = element_text(hjust = 0))
 
 ##########################################################################-
 # Adicionar leyendas en guías de duplicación de datos
 
 legend_dup <- tribble(
-  ~ x, ~ y, ~ label, ~ rot,
-  15., 0.5 * 10 ^ 5, "Duplica diario",   60,
-  30., 0.5 * 10 ^ 5, "Duplica cada 2d",  45,
-  42., 5.0 * 10 ^ 4, "Duplica cada 3d",  00,
-  55., 1.0 * 10 ^ 2, "Duplica cada 7d",  00,
-  55., 2.2 * 10 ^ 0, "Duplica cada mes", 00)
-
+      ~r,     ~t,             ~label, ~rot,
+  21.7, 50.000,   "Duplica diario",  71L,
+  33.8, 28.489,  "Duplica cada 2d",  55L,
+  54.8, 20.388,  "Duplica cada 3d",   0L,
+  55.4,  6.888,  "Duplica cada 7d",   0L,
+  65.0,  1.185, "Duplica cada mes",   0L
+  ) %>% 
+  mutate(x = r*cos(t*pi/180),
+         y = 2^(r*sin(t*pi/180)))
 
 # Creación de objeto G3 con leyendas en las guías de duplicación
 G4 <- G3 + 
@@ -345,7 +287,7 @@ G4 <- G3 +
             mapping = aes(x = x, y = y, label = label, angle = rot), 
             stat = "identity", position = "identity", 
             col = "black", inherit.aes = FALSE)
-G4
+G4 
 # Almacenamiento de objeto G4 en formato de *pdf* y *png*
 ggsave(file.path('Figuras', paste0(today(), "R3", ".pdf")), G4, width = 8, 
        height = 6, device = 'pdf')
@@ -356,19 +298,6 @@ ggsave(file.path('Figuras', paste0(today(), "R3", ".png")),
 
 ##########################################################################-
 # Curva epidémica con logs de crecimiento (caso 100) ----------------------
-##########################################################################-
-#' Función de adición de líneas guía de tiempo de duplicación
-#' @param t tiempo de duplicación a graficar
-#' @return lista con objeto stat_function que depende del eje x, está 
-#' multiplicado por 100 como corrección.
-#' @examples
-#' ggplot() + ... + line_t1(1)
-#' 
-line_t1 <- function(t) {
-  list(stat_function(fun = function(x) {1E2*2 ^ ((x) / t)},
-                     inherit.aes = F, lty = 'dotted', colour = 'gray1'))
-}
-
 ##########################################################################-
 # Modificación de tabla de datos 1 (data1)
 ##:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -387,9 +316,9 @@ data3 <- data1 %>%
   group_by(Location) %>% 
   mutate(dd2 = difftime(Date, min(Date), units = "days") %>% 
            as.numeric(.)) %>% 
-  filter(Location %in% c3) %>% 
+  filter(Location %in% c3$orig) %>% 
   ungroup(.) %>% 
-  mutate(Location = factor(Location, levels = c3))
+  mutate(Location = factor(Location, levels = c3$orig))
   
 ##########################################################################-
 # Creación de gráfico G5 con escala logarítmica y corrección por días de 
@@ -404,15 +333,15 @@ G5 <- data3 %>%
   geom_point(data = . %>% group_by(Location) %>% slice(which.max(dd))) + 
   scale_y_log10(breaks = 10^(1:6),
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
-  aux_param("D") +
-  coord_cartesian(xlim = c(0, 50), ylim = c(1E2, 1E6)) + 
+  aux_param(c3, cond=2) +
+  coord_cartesian(xlim = c(0, 70), ylim = c(1E2, 1E6)) + 
   labs(title = 'Curvas epidémicas de COVID-19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso 100.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
                         "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
                         a)) +
   geom_dl(aes(label = Location),
-          method = list(dl.trans(x = x + 0.1), "last.points", cex = 0.8)) +
+          method = list(dl.trans(x = x + 0.13), "last.points", cex = 0.8)) +
   xlab('Días desde el caso 100') +
   annotation_logticks(sides = 'l') +
   theme(panel.grid = element_line(colour = NA), 
@@ -423,12 +352,15 @@ G5 <- data3 %>%
 # Adicionar leyendas en guías de duplicación de datos
 
 legend_dup1 <- tribble(
-  ~ x, ~ y, ~ label, ~ rot,
-  7.3, 1.0 * 10 ^ 4, "Duplica diario",   65, 
-  23., 2.0 * 10 ^ 5, "Duplica cada 2d",  50,
-  40., 2.0 * 10 ^ 5, "Duplica cada 3d",  00,
-  30., 1.0 * 10 ^ 3, "Duplica cada 7d",  00,
-  36., 1.8 * 10 ^ 2, "Duplica cada mes", 00)
+      ~r,     ~t,             ~label, ~rot,
+   9.871, 42.306,   "Duplica diario",  72L,
+   25.48, 25.491,  "Duplica cada 2d",  58L,
+   41.48, 15.331,  "Duplica cada 3d",   0L,
+   66.18,  6.819,  "Duplica cada 7d",   0L,
+   60.01,  1.349, "Duplica cada mes",   0L
+  ) %>% 
+  mutate(x = r * cos(t * pi / 180), 
+         y = 1E2 * 2 ^ (r * sin(t * pi / 180)))
 
 # Creación de objeto G3 con leyendas en las guías de duplicación
 G6 <- G5 + 
@@ -436,7 +368,7 @@ G6 <- G5 +
             mapping = aes(x = x, y = y, label = label, angle = rot), 
             stat = "identity", position = "identity", 
             col = "black", inherit.aes = FALSE)
-
+G6
 
 # Almacenamiento de objeto G4 en formato de *pdf* y *png*
 ggsave(file.path('Figuras', paste0(today(), "R4", ".png")), 
