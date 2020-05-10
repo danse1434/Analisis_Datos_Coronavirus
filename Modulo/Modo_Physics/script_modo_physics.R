@@ -25,7 +25,7 @@ require(lubridate)
 
 ##########################################################################-
 # Lectura de datos
-data_mp <- source('lectura_datos.R')
+data_mp <- source('Modulo/lectura_datos.R')
 
 # Fecha actualizacion de datos para gráficos
 a <- paste0("Actualizado ", now())

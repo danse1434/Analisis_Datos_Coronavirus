@@ -26,12 +26,12 @@ library(directlabels) # Rectas al final de gráficos
 
 #-------------------------------------------------------------------------------#
 # Carga de funciones definidas por usuario
-source("funciones.R")
+source("Modulo/funciones.R")
 
 ##########################################################################-
 # Lectura de archivo de datos ---------------------------------------------
 ##########################################################################-
-source("lectura_datos.R")
+source("Modulo/lectura_datos.R")
 data
 
 # Fecha actualizacion de datos para gráficos
