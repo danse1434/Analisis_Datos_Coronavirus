@@ -25,10 +25,10 @@ require(lubridate)
 
 ##########################################################################-
 # Lectura de datos
-data_mp <- source('Modulo/lectura_datos.R')
+data_mp <- source('Modulo/lectura_datos.R', encoding = 'UTF-8')
 
 # Fecha actualizacion de datos para gráficos
-a <- paste0("Actualizado ", now())
+a <- glue::glue("Actualizado {now()}")
 
 ##########################################################################-
 # Modificación de archivo de datos ----------------------------------------

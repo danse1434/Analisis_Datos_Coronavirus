@@ -28,7 +28,7 @@ require(lubridate)
 data_mp <- source('Modulo/lectura_datos.R')
 
 # Fecha actualizacion de datos para gráficos
-a <- paste0("Actualizado ", now())
+a <- glue::glue("Actualizado {now()}")
 
 ##########################################################################-
 # Modificación de archivo de datos ----------------------------------------
