@@ -26,16 +26,16 @@ library(directlabels) # Rectas al final de gráficos
 
 #-------------------------------------------------------------------------------#
 # Carga de funciones definidas por usuario
-source("Modulo/funciones.R")
+source("Modulo/funciones.R", encoding = "UTF-8")
 
 ##########################################################################-
 # Lectura de archivo de datos ---------------------------------------------
 ##########################################################################-
-source("Modulo/lectura_datos.R")
+source("Modulo/lectura_datos.R", encoding = "UTF-8")
 data
 
 # Fecha actualizacion de datos para gráficos
-a <- paste0("Actualizado ", now())
+a <- glue::glue("Actualizado {now()}")
 
 ##########################################################################-
 # Modificación de archivo de datos ----------------------------------------
