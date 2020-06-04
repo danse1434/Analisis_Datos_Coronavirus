@@ -2,8 +2,8 @@
 Este repositorio contiene algunas herramientas para el análisis de datos de la expansión de Covid-19 en Colombia con R.
 
 
-# Modulos
-## Modulo 1 - Análisis comparativo por países de referencia
+## Módulos
+### Módulo 1 - Análisis comparativo por países de referencia
 En el archivo `<script.R>` se encuentran las instrucciones para producir las figuras R1, R2, R3, y R4. Estas corresponden a:
 
 1. **R1**: reporte de casos acumulados COVID-19 con países de referencia a nivel internacional (**A**) y nivel latinoamérica (**B**). Estos gráficos deben ser actualizados de acuerdo al número de días que se lleva desde la crisis. 
@@ -20,7 +20,7 @@ Se marca en rojo el caso de Colombia. La variable en el eje X es el día del pri
 
 El script requiere la lectura de un archivo que contiene funciones `<Modulo/funciones.R>`. La lectura de los datos desde la fuente se realiza mediante el script `<Modulo/lectura_datos.R>`. La fuente de datos es el [Repositorio de datos de Coronavirus del Centro de Ciencia de Sistemas e Ingeniería de la Universidad John Hopkins](https://github.com/CSSEGISandData). 
 
-## Modulo 2 - Comparativos de la evolución de la epidemia 
+### Módulo 2 - Comparativos de la evolución de la epidemia 
 Este módulo está inspirado en la [comparación](https://aatishb.com/covidtrends/) realizada por Aatish Bhatia en colaboración con _Minute of Physics_. En este se generan gráficos de tipo animación con el número de casos (confirmados en los últimos 7 días) vs el número de casos acumulados totales. En el [video](https://www.youtube.com/watch?v=54XLXg4fYsc) se explican como ventajas que: 
 * Se utiliza una escala logarítmica, lo cual permite hacer comparaciones más fáciles y se permite la detección sencilla de cambios en el comportamiento de la transmisión. 
 * Se enfoca en el cambio y no es los números de forma absoluta, para lo cual utiliza el número de casos (confirmados en los últimos 7 días) como eje Y, ya que permite evaluar mejor el cambio.
@@ -37,10 +37,10 @@ Las gráficas corresponden a:
 1. **R5**: reporte de comparativo de crecimiento con casos confirmados.
 2. **R6**: reporte de comparativo de crecimiento con muertes confirmadas. 
 
-## Módulo 3 - Comparación de demografía en varias poblaciones 
+### Módulo 3 - Comparación de demografía en varias poblaciones 
 En este modulo se pretender realizar una comparación de la situación demográfica (mediante pirámides poblacionales por sexo) en países de referencia. Esto teniendo en cuenta que la edad es un factor de riesgo en la severidad del COVID-19; por el momento sólo se cuenta con una comparación con Italia en la región más afectada por la enfermedad. 
 
-## Módulo 4 - Análisis de Caso de Ivermectina 
+### Módulo 4 - Análisis de Caso de Ivermectina 
 En este módulo se realiza un análisis de la posible efectividad de este fármaco en el tratamiento de la **infección** por SARS-CoV-II. 
 
 En este estudios se intenta conocer un poco sobre la posible utilidad de este fármaco, desde la simulación. Se emplean tres modelos acoplados: 
@@ -61,13 +61,13 @@ Estos datos son tomados de la imagen del artículo mediante el digitalizador de 
 
 Este fue obtenido mediante un modelamiento de efectos mixtos no lineales desde datos reportados en la literatura sobre la cinética del virus. Se realiza el acoplamiento del modelo PK-PD con E proporcional a la efectividad del tratamiento.
 
-## Módulo 5 - Análisis de datos en Bogotá
+### Módulo 5 - Análisis de datos en Bogotá
 
-## Módulo 6 - Análisis del interés de terapias 
+### Módulo 6 - Análisis del interés de terapias 
 Se realiza una aproximación del interés de la población en general a posibles tratamientos del Coronavirus teniendo en cuenta las consultas a Google. Se realiza la obtención de los datos mediante el paquete `<gtrendsR>` de R. 
 
-## Módulo 7 - Comparativo de pruebas realizadas en varios países
+### Módulo 7 - Comparativo de pruebas realizadas en varios países
 Se realiza un comparativo de pruebas realizadas en varios países de referencias, de acuerdo a la fecha desde el primer reporte. 
 
-## Módulo 8 -  Análisis de reportes en NZ y USA
+### Módulo 8 -  Análisis de reportes en NZ y USA
 Se realiza un análisis de reportes en NZ con las intervenciones adoptadas por este país, se observan los tipos de cuarentenas realizadas. 
