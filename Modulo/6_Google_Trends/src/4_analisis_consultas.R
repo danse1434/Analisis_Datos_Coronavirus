@@ -87,3 +87,20 @@ wordcloud(words = datat1$value, freq = datat1$rel_frec, min.freq = 1,
           max.words=200, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
 dev.off()
+
+data %>% 
+  filter(related_queries == 'rising') %>% 
+  rownames_to_column(var = 'ID') %>% 
+  filter(!(keyword1 %in% c(
+    'Colchicina',
+    'Dapagliflozin',
+    'Lenzilumab',
+    'Sarilumab',
+    'Cloro OR MMS OR DiÃ³xido de cloro'
+  ))) %>% 
+  mutate(ID = as.double(ID), 
+         hits_f = hits_t*ID/sum(hits_t*ID)) %>%
+  select(value, hits_f) %$% 
+  wordcloud(words = .$value, freq = .$hits_f, min.freq = 1E-8,
+            max.words=500, random.order=FALSE, rot.per=0.35, 
+            colors=brewer.pal(8, "Dark2"))

@@ -33,7 +33,7 @@ aux_param <- function(ls, pal="Dark2", cond=1) {
                        linetype = guide_legend(!!!y),
                        shape    = guide_legend(!!!y))    )), 
     # Otras configuraciones
-    coord_cartesian(xlim = c(0, 100), ylim = c(0, 5.0E5)),
+    coord_cartesian(xlim = c(0, 120), ylim = c(0, 1.0E6)),
     xlab("Días desde primer reporte"),
     ylab("Casos reportados"),
     theme_bw(), 

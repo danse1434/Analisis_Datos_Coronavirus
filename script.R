@@ -112,7 +112,7 @@ G2 <- data1 %>%
 G1_comp <- (G1 + G2) +
   plot_annotation(
     title = 'Reporte de casos acumulados COVID-19',
-    subtitle = 'Primeros 100 días desde reporte en países de referencia',
+    subtitle = 'Primeros 120 días desde reporte en países de referencia',
     caption = paste0(
       "Estos números no dicen nada sobre el número de personas infectadas, ",
       "sólo el número de personas quienes han sido positivas. \n",
@@ -121,7 +121,6 @@ G1_comp <- (G1 + G2) +
       a))
 
 # Almacenamiento de objeto G1_comp en formato de *pdf* y *png*
-
 ggsave(file.path('Figuras', paste0(today(), "R1", ".pdf")), G1_comp, 
        width = 8.5, height = 5, device = 'pdf')
 
@@ -144,7 +143,6 @@ G_China <- data1 %>%
   xlab('Días desde inicio') + ylab('Casos reportados') + 
   labs(title = 'Reporte de Casos China Covid-19',
        subtitle = "Tomado CSSEGISandData COVID-19")
-
 
 ##########################################################################-
 # Modelamiento de tiempo de duplicación -----------------------------------
@@ -207,13 +205,15 @@ G_THALF <- datalist %>%
   xlab('Día del año (detección primer caso)') +
   labs(title = 'Modelamiento tiempo de duplicación aparente por país', 
        subtitle = expression(T[1/2]~'duplicación de casos aparente por regresión no lineal vs día del año detección primer caso')) + 
-  coord_cartesian(ylim = c(0, 15)) +
+  coord_cartesian(ylim = c(0, 15), xlim = c(0,120)) +
   geom_point(data = filter(datalist, Location=='Colombia'),
              col = 'red') +
   geom_text_repel(aes(label = Location),
                   data = filter(datalist, 
                                 Location%in%c(c1$orig, c2$orig)), 
-                  box.padding = unit(0.95, "lines"))
+                  box.padding = unit(0.95, "lines")) +
+  theme(legend.position = c(0.5, 0.1)) +
+  guides(colour = guide_colorbar(direction = "horizontal"))
 
 # Almacenamiento de objeto G_THALF en formato de *pdf* y *png*
 ggsave(file.path('Figuras', paste0(today(), "R2", ".pdf")), G_THALF, 
@@ -255,7 +255,7 @@ G3 <- data1 %>%
   scale_y_log10(breaks = 10^(1:6), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(ls = c3, cond = 2) +
-  coord_cartesian(xlim = c(0, 100), ylim = c(1E0,1E6)) + 
+  coord_cartesian(xlim = c(0, 120), ylim = c(1E0,1E6)) + 
   labs(title = 'Curvas epidémicas de COVID19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso índice.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
@@ -276,10 +276,10 @@ G3 <- data1 %>%
 legend_dup <- tribble(
       ~r,     ~t,             ~label, ~rot,
   21.7, 50.000,   "Duplica diario",  71L,
-  33.8, 28.489,  "Duplica cada 2d",  55L,
+  33.8, 28.489,  "Duplica cada 2d",  60L,
   54.8, 20.388,  "Duplica cada 3d",   0L,
   55.4,  6.888,  "Duplica cada 7d",   0L,
-  65.0,  1.185, "Duplica cada mes",   0L
+  75.0,  1.185, "Duplica cada mes",   0L
   ) %>% 
   mutate(x = r*cos(t*pi/180),
          y = 2^(r*sin(t*pi/180)))
@@ -297,7 +297,6 @@ ggsave(file.path('Figuras', paste0(today(), "R3", ".pdf")), G4, width = 8,
 
 ggsave(file.path('Figuras', paste0(today(), "R3", ".png")), 
        G4, width = 8, height = 6, device = 'png', dpi = 300)
-
 
 ##########################################################################-
 # Curva epidémica con logs de crecimiento (caso 100) ----------------------
@@ -360,7 +359,7 @@ legend_dup1 <- tribble(
    15.00, 42.306,   "Duplica diario",  75L,
    27.00, 24.000,  "Duplica cada 2d",  64L,
    46.00, 15.331,  "Duplica cada 3d",   0L,
-   95.00,  6.819,  "Duplica cada 7d",   0L,
+   90.00,  7.5,  "Duplica cada 7d",   0L,
    80.00,  1.349, "Duplica cada mes",   0L
   ) %>% 
   mutate(x = r * cos(t * pi / 180), 

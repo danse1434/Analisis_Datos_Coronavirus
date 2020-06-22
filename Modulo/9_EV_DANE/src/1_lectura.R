@@ -7,7 +7,7 @@ require(forecast)
 
 
 yearfun <- function(year) {
-  x <- read_delim(file.path('DATA', paste0('nofetal', year, '.txt')), 
+  x <- read_delim(file.path('Modulo', '9_EV_DANE', 'data', paste0('nofetal', year, '.txt')), 
              "\t", escape_double = FALSE, trim_ws = TRUE)
   assign(paste0("nofetal", year), x, envir = parent.frame())
 }

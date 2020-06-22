@@ -3,7 +3,7 @@ library("lubridate")
 library("sf")
 library('glue')
 
-# source("Modulo/5_Bogota/src/1_mapa_manejo.R")
+source("Modulo/5_Bogota/src/1_mapa_manejo.R")
 
 #-------------------------------------------------------------------------------#
 
@@ -77,9 +77,9 @@ G1 <- data1 %>%
   theme(legend.position = 'none', 
         axis.title.x = element_blank(), 
         panel.grid = element_line(colour = 'gray99')) +
-  coord_cartesian(ylim = c(0,200))
+  coord_cartesian(ylim = c(0,200), xlim = as.Date(c('2020-03-15','2020-06-21')))
 
-
+G1
 ggsave(glue('Modulo/5_Bogota/Figuras/Bogota_{today()}.png'), G1, 
        width = 10, height = 6, device = 'png', dpi = 300)
 
@@ -127,7 +127,7 @@ theme_set(theme_bw() +
 
 data3 %>% 
   filter(Fecha == "2020-05-12") %>% 
-  ggplot(aes(geometry)) + 
+  ggplot(aes(geometry = geometry)) + 
   geom_sf(aes(fill = RepAcu))
 
 require(tmap)
