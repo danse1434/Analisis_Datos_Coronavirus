@@ -80,9 +80,6 @@ legend_df <- tibble::tribble(
   '5', '180mg q8h'
 )
 
-
-
-
 Cc_df1 <- Cc_df %>% 
   group_by(group) %>% 
   filter(`..90.` == max(..90.)) %>% 
