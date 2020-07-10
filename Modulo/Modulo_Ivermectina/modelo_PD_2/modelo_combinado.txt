@@ -1,0 +1,64 @@
+[INDIVIDUAL]
+
+input = {V1_pop, omega_V1, V2_pop, omega_V2, 
+        Cl_pop, omega_Cl, Q_pop, omega_Q,
+        Mtt_pop, omega_Mtt}
+
+DEFINITION:
+V1 = {distribution = lognormal, reference = V1_pop, sd = omega_V1}
+V2 = {distribution = lognormal, reference = V2_pop, sd = omega_V2}
+Cl = {distribution = lognormal, reference = Cl_pop, sd = omega_Cl}
+Q = {distribution = lognormal, reference = Q_pop, sd = omega_Q}
+Mtt = {distribution = lognormal, reference = Mtt_pop, sd = omega_Mtt}
+
+
+[LONGITUDINAL]
+input = {V1, V2, Cl, Q, Ktr, Mtt, ka, Imax, IC50, hill, beta, gamma, delta}
+
+PK:
+; Transformacion de parametros
+V = V1 
+k = Cl/V1 
+k12 = Q/V1 
+k21 = Q/V2
+
+; Definicion del modelo PK
+compartment(cmt=1, volume=V, concentration=Cc)
+;compartment(cmt=2, volume=V2, concentration = Cp)
+absorption(adm=1, cmt=1, Ktr, Mtt, ka)
+peripheral(k12, k21)
+elimination(cmt=1, k)
+
+EQUATION:
+odeType = stiff
+
+; Conversion a ng/mL
+;y1 = Cc * 1000 
+
+; Farmacodinamia ==========================================
+R = 1 - ((Imax * Cc^hill)/(Cc^hill + IC50))
+Rc = min(R, 1)
+
+; Cinética Viral =============================================
+t_0 = 0
+f_0 = 1
+v_0 = 21.8
+
+g1 = 0
+g2 = 0
+
+if v >= 1
+    g1 = - beta*f*v
+    g2 = (Rc)*gamma*f*v - delta*v
+else
+    g1 = 0
+    g2 = 0
+end
+
+ddt_f = g1
+ddt_v = g2
+
+
+OUTPUT:
+output = {Cc, R, f, v}
+
