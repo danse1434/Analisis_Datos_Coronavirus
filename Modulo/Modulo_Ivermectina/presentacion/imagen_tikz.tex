@@ -1,0 +1,101 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks} % Paquete de plotmarks
+\usetikzlibrary{shapes,arrows.meta} % Paquete para flechas
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\definecolor{blue12}{RGB}{183,222,232}
+\definecolor{red_per}{RGB}{242,220,218}
+
+
+\usepackage[EULERGREEK]{sansmath}
+
+
+\begin{document}
+\begin{tikzpicture}[
+	scale=1,
+	% Configuración de elementos
+	%
+	pknodo/.style={draw, thick, align=center, execute at begin node=\setlength{\baselineskip}{1em},fill=blue12!60,circle, minimum size=2cm},
+	%
+	minodo/.style={draw, align=center, execute at begin node=\setlength{\baselineskip}{1em},fill=green!40,circle},
+	% Nodo de compartimento de tránsito
+	trnodo/.style={draw, align=center, execute at begin node=\setlength{\baselineskip}{1em},fill=blue12!60,rectangle, rounded corners},
+	% Nodo terminal
+	termin/.style={draw=green!20, align=center, execute at begin node=\setlength{\baselineskip}{1em},fill=green!40,rectangle, minimum height = 1.0cm, minimum width = 2cm, rounded corners},
+	%
+	pdnodo/.style={draw, align=center, execute at begin node=\setlength{\baselineskip}{1em},fill=red!50,rectangle, rounded corners, minimum height = 1.3cm, minimum width = 2cm},
+	% 
+	mdnodo/.style={circle,draw, minimum size = 5mm, very thick},
+	%
+	FS.arrow/.style={draw=black, thick, -{Stealth[black]}},
+	%
+	]
+	%\draw[step=0.5, gray!10, very thin] (-6,-4.5) grid (16,6);
+	%\draw[step=1.0, gray!99, very thin] (-6,-4.5) grid (16,6);
+	% Nodos
+	\def\DoX{-2.0}
+	\def\DoY{+4.5}
+	\path 
+	% Compartimentos farmacocinética absorción
+	(\DoX+0.0,\DoY)  node(PK_abs1)  [termin,draw=blue!40,fill=blue12!60] {\textbf{Dosis}}
+	(\DoX+2.0,\DoY)  node(PK_abs2)  [trnodo] {T1}
+	(\DoX+3.5,\DoY)  node(PK_abs3)  [trnodo] {T2}
+	(\DoX+5.0,\DoY)  node(PK_abs4)  [trnodo] {T3}
+	(\DoX+6.5,\DoY)  node(PK_abs5)  [trnodo] {T4}
+	(\DoX+8.0,\DoY)  node(PK_abs6)  [trnodo] {T5}
+	(\DoX+9.5,\DoY)  node(PK_abs7)  [trnodo] {T6}
+	(+4.5,+2.5)  node(PK_abs8)  [trnodo] {\textbf{Sitio de} \\ \textbf{absorción}}
+	% Compartimentos farmacocinética disposición
+	(+4.5,+0.0)  node(PK_dis1)  [pknodo] {\textbf{Compart.} \\ \textbf{1}}
+	(+1.0,+0.0)  node(PK_dis2)  [pknodo] {\textbf{Compart.} \\ \textbf{2}}
+	(+4.5,-3.0)  node(PK_dis3)  [termin,draw=blue!40,fill=blue12!60] {\textbf{Eliminación}}
+	%
+	% Compartimentos farmacodinámicos
+	(+8.0,+0.0)  node(PD1)  [pdnodo] {\textbf{Efecto}}
+	(+8.0,+1.5)  node[] {\(\eta = 1- \left(\frac{\mathrm{R_0}-\mathrm{C_P}^{\gamma}}{\mathrm{C_P}^{\gamma}+\mathrm{IC50}}\right)
+	\)}
+	% Compartimentos cinética viral
+	(+11.5,+0.0)  node(VK1)  [minodo] {\textbf{Partículas} \\ \textbf{virales}}
+	(+11.5,+4.0)  node(VK2)  [minodo] {\textbf{Células no} \\ \textbf{infectadas}}
+	(+15.0,+4.0)  node(VK3)  [termin] {\textbf{Muerte} \\ \textbf{Celular}}
+	(+15.0,+0.0)  node(VK4)  [termin] {\textbf{Inactivación}}
+	% Nodos de medida
+	(+6.00,-1.5)  node(med1) [mdnodo]{}
+	(+8.00,-1.5)  node(med2) [mdnodo]{}
+	(+13.0,-1.5)  node(med3) [mdnodo]{}
+	
+	;
+	% Flechas del modelo
+	%===== Farmacocinética absorción ===============================
+	\draw[FS.arrow] (PK_abs1) -- node[above]{$k_{t}$} (PK_abs2);
+	\draw[FS.arrow] (PK_abs2) -- node[above]{$k_{t}$} (PK_abs3);
+	\draw[FS.arrow] (PK_abs3) -- node[above]{$k_{t}$} (PK_abs4);
+	\draw[FS.arrow] (PK_abs4) -- node[above]{$k_{t}$} (PK_abs5);
+	\draw[FS.arrow] (PK_abs5) -- node[above]{$k_{t}$} (PK_abs6);
+	\draw[FS.arrow] (PK_abs6) -- node[above]{$k_{t}$} (PK_abs7);
+	\draw[FS.arrow] (PK_abs7) -- node[right]{$k_{t}$} +(0.0, -1.0) -| (PK_abs8.north);
+	
+	\draw[FS.arrow] (PK_abs8) -- node[right]{$k_{a}$} (PK_dis1);
+	%===== Farmacocinética disposición ===============================
+	\draw[FS.arrow] (PK_dis1) edge[in=+10, out=+170,looseness=0] node[above]{$k_{12}$} (PK_dis2);
+	\draw[FS.arrow] (PK_dis2) edge[in=+190,out=-10, looseness=-10] node[below]{$k_{21}$} (PK_dis1);
+	\draw[FS.arrow] (PK_dis1) -- node[left]{$k_{10}$} (PK_dis3);
+	%===================== Sistema Farmacodinámico ===================================
+	\draw[FS.arrow, dashed] (PK_dis1) -- node[above]{$f_{u}$} (PD1);
+	%===================== Sistema Viral ===================================
+	\draw[FS.arrow] (VK1) -- node[above]{$\delta$} (VK4);
+	\draw[FS.arrow] (VK2) -- node[above]{$\beta$} (VK3);
+	\draw[FS.arrow] (VK1) edge[in=+90,out=+165,looseness=3.0] node[very near end,above=1mm, right=0mm]{$\gamma$} (VK1);
+	\draw[FS.arrow] (VK2) edge[in=+135,out=-90,looseness=2.0] (10.6,1.60);
+	\draw[FS.arrow] (VK1) edge[in=-90,out=+45,looseness=1] (13,4);
+	\draw[FS.arrow] (PD1.east) to[out=0,in=-120] node[below=6mm, right=-6.5mm]{$\eta\times \mathrm{H}(t)$} (+10.0,+0.6);
+	%===================== Variables observaciones ===================================
+	\draw[thick] (PK_dis1) -- (med1);
+	\draw[thick] (PD1) -- (med2);
+	\draw[thick] (VK1) -- (med3);
+
+	\end{tikzpicture}
+
+\end{document}
