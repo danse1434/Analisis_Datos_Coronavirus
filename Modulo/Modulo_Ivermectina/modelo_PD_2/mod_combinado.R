@@ -94,16 +94,16 @@ G1 <- Cc_df %>%
   coord_cartesian(xlim = c(0,22)) +
   scale_y_continuous(
     sec.axis = sec_axis( ~ .*1000 / 875.10, 
-                         name = expression(paste("Conc. plasmástica (", mu, "M)")))) +
+                         name = expression(paste("Conc. libre IVM (", mu, "M)")))) +
   xlab('Tiempo (días)') +
   geom_text_repel(data = Cc_df1, 
                   aes(x = time/24, y = ..90., col = group, label = l1),
                   xlim = c(15, 20)) +
-  ylab('Concentración plasmática libre \n IVM (mg/L)') +
+  ylab('Concentración libre \n IVM (mg/L)') +
   theme(legend.position = "none")  +
   labs(
-    title = 'Farmacocinética de Ivermectina; tratamiento por 7 días',
-    subtitle = ' ',
+    title = 'Farmacocinética de Ivermectina',
+    subtitle = 'Esquemas de tratamiento de 7 días',
     caption =
       glue::glue(
         "PK: Duthaler U, Suenderhauf C, Karlsson MO, Hussner J, Meyer zu Schwabedissen H, Krähenbühl S, et al. 
