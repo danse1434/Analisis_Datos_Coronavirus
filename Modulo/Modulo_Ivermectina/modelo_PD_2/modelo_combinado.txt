@@ -13,7 +13,7 @@ Mtt = {distribution = lognormal, reference = Mtt_pop, sd = omega_Mtt}
 
 
 [LONGITUDINAL]
-input = {V1, V2, Cl, Q, Ktr, Mtt, ka, Imax, IC50, hill, beta, gamma, delta}
+input = {V1, V2, Cl, Q, Ktr, Mtt, ka, Imax, IC50, pb, hill, beta, gamma, delta}
 
 PK:
 ; Transformacion de parametros
@@ -33,13 +33,15 @@ EQUATION:
 odeType = stiff
 
 ; Conversion a ng/mL
-;y1 = Cc * 1000 
+;y1 = Cc * 1000
+
+u_Cc = (1 - pb) * Cc
 
 ; Farmacodinamia ==========================================
-R = 1 - ((Imax * Cc^hill)/(Cc^hill + IC50))
+R = 1 - ((Imax * u_Cc^hill)/(u_Cc^hill + IC50))
 Rc = min(R, 1)
 
-; Cinética Viral =============================================
+; Cin?tica Viral =============================================
 t_0 = 0
 f_0 = 1
 v_0 = 21.8
@@ -60,5 +62,5 @@ ddt_v = g2
 
 
 OUTPUT:
-output = {Cc, R, f, v}
+output = {u_Cc, R, f, v}
 

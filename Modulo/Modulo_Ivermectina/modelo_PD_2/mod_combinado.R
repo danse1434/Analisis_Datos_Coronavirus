@@ -16,7 +16,7 @@ require(ggrepel)
 #................................................................................
 
 p1a  <- c(V1_pop = 89.13, V2_pop = 234.30, Cl_pop = 7.67, Q_pop = 19.0, 
-          Ktr = (6 + 1) / 1.05, Mtt_pop = 1.05, ka = 0.55)
+          Ktr = (6 + 1) / 1.05, Mtt_pop = 1.05, ka = 0.55, pb = 0.93)
 p2a  <- c(omega_V1 = 0.10, omega_V2 = 0.20, omega_Cl = 0.25, omega_Q = 0.41, 
           omega_Mtt = 0.60)
 pRa  <- c(Imax = 1.207, IC50 = 2.275, hill = 3.914)
@@ -24,7 +24,7 @@ pCV  <- c(beta = 6.77E-5, gamma = 4.55, delta = 1.59)
 pCV  <- pCV/24 # Consistencia dimensional de 1/días a 1/horas
 
 time_scale <- seq(0, 24*20, 0.1)
-Cca        <- list(name = 'Cc', time = time_scale)
+Cca        <- list(name = 'u_Cc', time = time_scale)
 Ra         <- list(name = 'R', time = time_scale)
 CinVir1    <- list(name = 'f', time = time_scale)
 CinVir2    <- list(name = 'v', time = time_scale)
@@ -36,17 +36,17 @@ adm_ivm <- function(x) {
 }
 
 adm1 <- adm_ivm(1)
-adm2 <- adm_ivm(2)
-adm3 <- adm_ivm(5)
-adm4 <- adm_ivm(10)
-adm5 <- adm_ivm(15)
+adm2 <- adm_ivm(10)
+adm3 <- adm_ivm(50)
+adm4 <- adm_ivm(100)
+adm5 <- adm_ivm(200)
 
 # 600,400
-g1   <- list(size = 100, level = 'individual', treatment = adm1)
-g2   <- list(size = 100, level = 'individual', treatment = adm2)
-g3   <- list(size = 100, level = 'individual', treatment = adm3)
-g4   <- list(size = 100, level = 'individual', treatment = adm4)
-g5   <- list(size = 100, level = 'individual', treatment = adm5)
+g1   <- list(size = 10, level = 'individual', treatment = adm1)
+g2   <- list(size = 10, level = 'individual', treatment = adm2)
+g3   <- list(size = 10, level = 'individual', treatment = adm3)
+g4   <- list(size = 10, level = 'individual', treatment = adm4)
+g5   <- list(size = 10, level = 'individual', treatment = adm5)
 
 
 # Módulo de Simulación
@@ -56,7 +56,7 @@ resa <- simulx(model     = 'modelo_PD_2/modelo_combinado.txt',
                group     = list(g1,g2,g3,g4,g5))
 
 
-Cc_df <- prctilemlx(resa$Cc, number = 2, plot = FALSE)[['y']] %>%
+Cc_df <- prctilemlx(resa$u_Cc, number = 2, plot = FALSE)[['y']] %>%
   as_tibble(.name_repair = 'universal')
 
 R_df <- prctilemlx(resa$R, number = 2, plot = FALSE)[['y']] %>%
@@ -74,11 +74,12 @@ theme_set(theme_bw())
 legend_df <- tibble::tribble(
   ~ group, ~ l1,
   '1', '12mg q8h',
-  '2', '24mg q8h',
-  '3', '120mg q8h',
-  '4', '144mg q8h',
-  '5', '180mg q8h'
+  '2', '120mg q8h',
+  '3', '600mg q8h',
+  '4', '1200mg q8h',
+  '5', '2400mg q8h'
 )
+
 
 Cc_df1 <- Cc_df %>% 
   group_by(group) %>% 
@@ -86,9 +87,9 @@ Cc_df1 <- Cc_df %>%
   left_join(legend_df, by = 'group') 
 
 G1 <- Cc_df %>% 
-  ggplot(aes(x = time/24, y = ..50., col = group)) +
+  ggplot(aes(x = time/24, y = ..50.)) +
   geom_ribbon(aes(ymin = ..10., ymax = ..90., fill = group, alpha = 0.2)) +
-  geom_line() + 
+  geom_line(aes(col = group)) + 
   xlab('Tiempo (días)') +
   coord_cartesian(xlim = c(0,22)) +
   scale_y_continuous(
@@ -98,10 +99,10 @@ G1 <- Cc_df %>%
   geom_text_repel(data = Cc_df1, 
                   aes(x = time/24, y = ..90., col = group, label = l1),
                   xlim = c(15, 20)) +
-  ylab('Concentración plasmática \n IVM (mg/L)') +
+  ylab('Concentración plasmática libre \n IVM (mg/L)') +
   theme(legend.position = "none")  +
   labs(
-    title = 'Farmacocinética de ivermectina; tratamiento por 7 días',
+    title = 'Farmacocinética de Ivermectina; tratamiento por 7 días',
     subtitle = ' ',
     caption =
       glue::glue(
@@ -113,7 +114,6 @@ G1 <- Cc_df %>%
   scale_color_viridis_d(end = 0.90) +
   scale_fill_viridis_d(end = 0.90)
 
-
 R_df1 <- R_df %>% 
   group_by(group) %>% 
   filter(`..50.` == min(..50.)) %>% 
@@ -121,9 +121,9 @@ R_df1 <- R_df %>%
 
 
 G2 <- R_df %>% 
-  ggplot(aes(x = time/24, y = ..50., col = group)) +
+  ggplot(aes(x = time/24, y = ..50.)) +
   geom_ribbon(aes(ymin = ..10., ymax = ..90., fill = group, alpha = 0.5)) +
-  geom_line() + 
+  geom_line(aes(col = group)) + 
   coord_cartesian()+
   xlab('Tiempo (días)') +
   ylab('Efecto RNA viral relativo (%)') +
@@ -147,7 +147,6 @@ G2 <- R_df %>%
 #-------------------------------------------------------------------------------#
 # Gráifco 1 -----------------------------------------------------
 #-------------------------------------------------------------------------------#
-
 
 breaks <- 10^(-1:7)
 minor_breaks <- rep(1:9, 9)*(10^rep(-1:7, each=9))
