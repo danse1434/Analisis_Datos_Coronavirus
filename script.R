@@ -112,7 +112,7 @@ G2 <- data1 %>%
 G1_comp <- (G1 + G2) +
   plot_annotation(
     title = 'Reporte de casos acumulados COVID-19',
-    subtitle = 'Primeros 120 días desde reporte en países de referencia',
+    subtitle = 'Primeros 140 días desde reporte en países de referencia',
     caption = paste0(
       "Estos números no dicen nada sobre el número de personas infectadas, ",
       "sólo el número de personas quienes han sido positivas. \n",
@@ -255,14 +255,14 @@ G3 <- data1 %>%
   scale_y_log10(breaks = 10^(1:6), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(ls = c3, cond = 2) +
-  coord_cartesian(xlim = c(0, 120), ylim = c(1E0,1E6)) + 
+  coord_cartesian(xlim = c(0, 140), ylim = c(1E0,2E6)) + 
   labs(title = 'Curvas epidémicas de COVID19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso índice.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
                         "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
                         a))+
   geom_dl(aes(label = Location),
-          method = list(dl.trans(x = x + 0.12), "last.points", cex = 0.8)) +
+          method = list(dl.trans(x = x + 0.12), "last.bumpup", cex = 0.8)) +
   annotation_logticks(sides = 'l') +
   theme(panel.grid.major.x = element_line(colour = 'gray90'), 
         panel.grid.minor.y = element_line(colour = 'gray98'),
@@ -336,14 +336,14 @@ G5 <- data3 %>%
   scale_y_log10(breaks = 10^(1:6), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(c3, cond=2) +
-  coord_cartesian(xlim = c(0, 100), ylim = c(1E2, 1E6)) + 
+  coord_cartesian(xlim = c(0, 140), ylim = c(1E2, 2E6)) + 
   labs(title = 'Curvas epidémicas de COVID-19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso 100.", 
        caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
                         "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
                         a)) +
   geom_dl(aes(label = Location),
-          method = list(dl.trans(x = x + 0.13), "last.points", cex = 0.8)) +
+          method = list(dl.trans(x = x + 0.13), "last.bumpup", cex = 0.8)) +
   xlab('Días desde el caso 100') +
   annotation_logticks(sides = 'l') +
   theme(panel.grid.major.x = element_line(colour = 'gray90'), 
