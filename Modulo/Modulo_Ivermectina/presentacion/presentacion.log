@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.5)  12 JUL 2020 16:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.5)  12 JUL 2020 21:05
 entering extended mode
 **./presentacion.tex
 (presentacion.tex
@@ -206,7 +206,10 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-)
+
+("C:\Program Files\MiKTeX\tex/latex/graphics\dvipsnam.def"
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
 ("C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex"
 Package: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
 
@@ -634,6 +637,12 @@ Package: amsthm 2020/05/29 v2.20.6
 \beamer@dimb=\dimen276
 )
 ("C:\Program Files\MiKTeX\tex/latex/beamer\beamerouterthemedefault.sty")))
+("C:\Program Files\MiKTeX\tex/latex/beamer\beamerthemeMadrid.sty"
+("C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemewhale.sty")
+("C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemeorchid.sty")
+("C:\Program Files\MiKTeX\tex/latex/beamer\beamerinnerthemerounded.sty")
+("C:\Program Files\MiKTeX\tex/latex/beamer\beamerouterthemeinfolines.sty"))
+("C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemestructure.sty")
 ("C:\Program Files\MiKTeX\tex/latex/base\inputenc.sty"
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks44
@@ -865,11 +874,6 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 Package: filemod-expmin 2011/09/19 v1.2 Get and compare file modification times
  (expandable; minimal)
 ))
-("C:\Program Files\MiKTeX\tex/latex/beamer\beamerthemeMadrid.sty"
-("C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemewhale.sty")
-("C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemeorchid.sty")
-("C:\Program Files\MiKTeX\tex/latex/beamer\beamerinnerthemerounded.sty")
-("C:\Program Files\MiKTeX\tex/latex/beamer\beamerouterthemeinfolines.sty"))
 ("C:\Program Files\MiKTeX\tex/latex/natbib\natbib.sty"
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip65
@@ -898,24 +902,24 @@ LaTeX Warning: Label `fig:g1' multiply defined.
 )
 \openout1 = `presentacion.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-0.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 3
+3.
  ("C:\Program Files\MiKTeX\tex/latex/lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -927,14 +931,14 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(11.74713pt, 340.7011pt, 11.74713pt)
+* h-part:(L,W,R)=(11.74988pt, 340.6956pt, 11.74988pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=340.7011pt
+* \textwidth=340.6956pt
 * \textheight=244.6939pt
-* \oddsidemargin=-60.52286pt
-* \evensidemargin=-60.52286pt
+* \oddsidemargin=-60.52011pt
+* \evensidemargin=-60.52011pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -981,7 +985,7 @@ G,.JBIG2,.JB2,.eps]
 )
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box124
-Package hyperref Info: Link coloring OFF on input line 20.
+Package hyperref Info: Link coloring OFF on input line 33.
 
 ("C:\Program Files\MiKTeX\tex/latex/hyperref\nameref.sty"
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -994,60 +998,60 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count335
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 33.
+LaTeX Info: Redefining \pageref on input line 33.
+LaTeX Info: Redefining \nameref on input line 33.
 
 (presentacion.out) (presentacion.out)
 \@outlinefile=\write5
 \openout5 = `presentacion.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 20.
+(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> OT1/cmss/b/n on input line 20.
+(Font)                  OT1/lmr/bx/n --> OT1/cmss/b/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 20.
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/lmss/b/n on input line 20.
+(Font)                  OT1/cmss/b/n --> OT1/lmss/b/n on input line 33.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmss/m/n --> T1/lmr/m/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 20.
+(Font)                  OT1/lmss/m/n --> T1/lmr/m/n on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> T1/lmss/b/n on input line 20.
+(Font)                  OT1/lmr/bx/n --> T1/lmss/b/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> T1/lmss/b/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 20.
+(Font)                  OT1/lmr/bx/n --> T1/lmss/b/n on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> T1/lmss/m/n on input line 20.
+(Font)                  OT1/lmss/m/n --> T1/lmss/m/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> T1/lmss/m/n on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 20.
+(Font)                  OT1/lmss/bx/n --> T1/lmss/m/n on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> T1/lmss/m/it on input line 20.
+(Font)                  OT1/lmr/m/it --> T1/lmss/m/it on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> T1/lmss/m/it on input line 20.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 20.
+(Font)                  OT1/lmr/bx/it --> T1/lmss/m/it on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/n on input line 20.
+(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/n on input line 20.
+(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 20.
+(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/lmss/m/it --> T1/lmss/b/it on input line 20.
+(Font)                  T1/lmss/m/it --> T1/lmss/b/it on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/lmss/b/n --> T1/lmr/b/n on input line 20.
+(Font)                  OT1/lmss/b/n --> T1/lmr/b/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/lmss/b/n --> T1/lmss/b/n on input line 20.
+(Font)                  T1/lmss/b/n --> T1/lmss/b/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 20.
+(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/lmss/m/it --> T1/lmss/b/it on input line 20.
+(Font)                  T1/lmss/m/it --> T1/lmss/b/it on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/lmtt/m/n --> T1/lmtt/b/n on input line 20.
+(Font)                  T1/lmtt/m/n --> T1/lmtt/b/n on input line 33.
 
 ("C:\Program Files\MiKTeX\tex/latex/translator\translator-basic-dictionary-Engl
 ish.dict"
@@ -1073,12 +1077,12 @@ Dictionary: translator-numbers-dictionary, Language: English
 glish.dict"
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 20.
-LaTeX Info: Redefining \% on input line 20.
+LaTeX Info: Redefining \. on input line 33.
+LaTeX Info: Redefining \% on input line 33.
  (presentacion.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
-(hyperref)                setting the option has no effect on input line 21.
+(hyperref)                setting the option has no effect on input line 34.
 
 [1
 
@@ -1088,232 +1092,281 @@ LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 ) [2
 
-] [3
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+) [3
+
+] [4
 
 ]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 52.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 65.
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-52.
- ("C:\Program Files\MiKTeX\tex/latex/lm\ot1lmss.fd"
+65.
+
+("C:\Program Files\MiKTeX\tex/latex/lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-2.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
+5.
 
 ("C:\Program Files\MiKTeX\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-52.
+65.
 
 ("C:\Program Files\MiKTeX\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-52.
+65.
 
 ("C:\Program Files\MiKTeX\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 52.
+(Font)              <10.95> on input line 65.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 52.
+(Font)              <8> on input line 65.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 52.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+(Font)              <6> on input line 65.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
 
 
 ("C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
 
 
 ("C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 52.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 65.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 52.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 52
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 65.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 65
 .
 
 ("C:\Program Files\MiKTeX\tex/latex/lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [4
+) [5
 
 ]
-<figs/Caly_Extracted_Image.jpg, id=163, 511.64601pt x 651.70912pt>
+<figs/Caly_Extracted_Image.jpg, id=202, 511.64601pt x 651.70912pt>
 File: figs/Caly_Extracted_Image.jpg Graphic file (type jpg)
 <use figs/Caly_Extracted_Image.jpg>
-Package pdftex.def Info: figs/Caly_Extracted_Image.jpg  used on input line 69.
-(pdftex.def)             Requested size: 165.35054pt x 210.60963pt.
+Package pdftex.def Info: figs/Caly_Extracted_Image.jpg  used on input line 82.
+(pdftex.def)             Requested size: 165.3478pt x 210.60963pt.
 
-Overfull \vbox (14.75122pt too high) detected at line 69
- []
-
-[5
-
- <./figs/Caly_Extracted_Image.jpg>]
-<figs/titular_1.png, id=193, 625.58719pt x 546.54187pt>
-File: figs/titular_1.png Graphic file (type png)
-<use figs/titular_1.png>
-Package pdftex.def Info: figs/titular_1.png  used on input line 78.
-(pdftex.def)             Requested size: 238.48972pt x 208.35522pt.
-
-Overfull \vbox (33.5356pt too high) detected at line 78
+Overfull \vbox (14.75122pt too high) detected at line 82
  []
 
 [6
 
- <./figs/titular_1.png>]
-<../../6_Google_Trends/figures/G2_2020-06-21.pdf, id=220, 578.16pt x 433.62pt>
-File: ../../6_Google_Trends/figures/G2_2020-06-21.pdf Graphic file (type pdf)
-<use ../../6_Google_Trends/figures/G2_2020-06-21.pdf>
-Package pdftex.def Info: ../../6_Google_Trends/figures/G2_2020-06-21.pdf  used 
-on input line 87.
-(pdftex.def)             Requested size: 272.5619pt x 204.41676pt.
+ <./figs/Caly_Extracted_Image.jpg>]
+<figs/titular_1.png, id=232, 625.58719pt x 546.54187pt>
+File: figs/titular_1.png Graphic file (type png)
+<use figs/titular_1.png>
+Package pdftex.def Info: figs/titular_1.png  used on input line 91.
+(pdftex.def)             Requested size: 238.48587pt x 208.34688pt.
 
-Overfull \vbox (5.66798pt too high) detected at line 87
+Overfull \vbox (33.52725pt too high) detected at line 91
  []
 
 [7
 
- <../../6_Google_Trends/figures/G2_2020-06-21.pdf>] [8
+ <./figs/titular_1.png>]
+<../../6_Google_Trends/figures/G2_2020-06-21.pdf, id=260, 578.16pt x 433.62pt>
+File: ../../6_Google_Trends/figures/G2_2020-06-21.pdf Graphic file (type pdf)
+<use ../../6_Google_Trends/figures/G2_2020-06-21.pdf>
+Package pdftex.def Info: ../../6_Google_Trends/figures/G2_2020-06-21.pdf  used 
+on input line 100.
+(pdftex.def)             Requested size: 272.55751pt x 204.41676pt.
+
+Overfull \vbox (5.66798pt too high) detected at line 100
+ []
+
+[8
+
+ <../../6_Google_Trends/figures/G2_2020-06-21.pdf>] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+[9
+
+] [10
 
 ]
-<figs/ivermectin_profile.png, id=282, 578.16pt x 551.05875pt>
+<figs/ivermectin_profile.png, id=352, 578.16pt x 551.05875pt>
 File: figs/ivermectin_profile.png Graphic file (type png)
 <use figs/ivermectin_profile.png>
-Package pdftex.def Info: figs/ivermectin_profile.png  used on input line 107.
-(pdftex.def)             Requested size: 170.35054pt x 162.35912pt.
- [9
+Package pdftex.def Info: figs/ivermectin_profile.png  used on input line 120.
+(pdftex.def)             Requested size: 170.3478pt x 162.35912pt.
+ [11
 
- <./figs/ivermectin_profile.png>] [10
+ <./figs/ivermectin_profile.png>] [12
 
 ]
-<../modelo_pkpd/PK2_opcional8.pdf, id=344, 578.16pt x 469.755pt>
+<../modelo_pkpd/PK2_opcional8.pdf, id=414, 578.16pt x 469.755pt>
 File: ../modelo_pkpd/PK2_opcional8.pdf Graphic file (type pdf)
 <use ../modelo_pkpd/PK2_opcional8.pdf>
 Package pdftex.def Info: ../modelo_pkpd/PK2_opcional8.pdf  used on input line 1
-29.
-(pdftex.def)             Requested size: 272.5619pt x 221.45149pt.
+42.
+(pdftex.def)             Requested size: 272.55751pt x 221.45149pt.
 
-Overfull \vbox (3.70271pt too high) detected at line 129
+Overfull \vbox (3.70271pt too high) detected at line 142
  []
 
-[11
+[13
 
- <../modelo_pkpd/PK2_opcional8.pdf>] [12
+ <../modelo_pkpd/PK2_opcional8.pdf>] [14
+
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+) [15
+
+] [16
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 146.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <12> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 146.
- [13
-
-]
-<../modelo_PD_2/figuras/G1.pdf, id=438, 578.16pt x 433.62pt>
+<../modelo_PD_2/figuras/G1.pdf, id=540, 578.16pt x 433.62pt>
 File: ../modelo_PD_2/figuras/G1.pdf Graphic file (type pdf)
 <use ../modelo_PD_2/figuras/G1.pdf>
-Package pdftex.def Info: ../modelo_PD_2/figuras/G1.pdf  used on input line 156.
+Package pdftex.def Info: ../modelo_PD_2/figuras/G1.pdf  used on input line 172.
 
-(pdftex.def)             Requested size: 306.6289pt x 229.96968pt.
+(pdftex.def)             Requested size: 306.62396pt x 229.96306pt.
 
-Overfull \vbox (12.2209pt too high) detected at line 156
+Overfull \vbox (12.21428pt too high) detected at line 172
  []
 
-[14
+[17
 
  <../modelo_PD_2/figuras/G1.pdf>]
-<../modelo_PD/modelo_ivermectina.pdf, id=475, 578.16pt x 505.89pt>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 187.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 187.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 187.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 187.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 187.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 187.
+ [18
+
+]
+<../modelo_PD/modelo_ivermectina.pdf, id=608, 578.16pt x 505.89pt>
 File: ../modelo_PD/modelo_ivermectina.pdf Graphic file (type pdf)
 <use ../modelo_PD/modelo_ivermectina.pdf>
 Package pdftex.def Info: ../modelo_PD/modelo_ivermectina.pdf  used on input lin
-e 166.
-(pdftex.def)             Requested size: 272.5619pt x 238.4862pt.
+e 197.
+(pdftex.def)             Requested size: 272.55751pt x 238.4862pt.
 
-Overfull \vbox (20.73743pt too high) detected at line 166
+Overfull \vbox (20.73743pt too high) detected at line 197
  []
 
-[15
+[19
 
  <../modelo_PD/modelo_ivermectina.pdf>]
-<../modelo_PD_2/figuras/G2.pdf, id=509, 578.16pt x 433.62pt>
+<../modelo_PD_2/figuras/G2.pdf, id=643, 578.16pt x 433.62pt>
 File: ../modelo_PD_2/figuras/G2.pdf Graphic file (type pdf)
 <use ../modelo_PD_2/figuras/G2.pdf>
-Package pdftex.def Info: ../modelo_PD_2/figuras/G2.pdf  used on input line 176.
+Package pdftex.def Info: ../modelo_PD_2/figuras/G2.pdf  used on input line 209.
 
-(pdftex.def)             Requested size: 306.6289pt x 229.96968pt.
-pdfTeX warning (ext4): destination with the same identifier (name{fig:g1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.176 	\end{frame}
-                  
-Overfull \vbox (12.2209pt too high) detected at line 176
- []
-
-[16
-
- <../modelo_PD_2/figuras/G2.pdf>]
-Package standalone Info: generated file tikz/imagen_tikz.pdf newer then source 
-file tikz/imagen_tikz.tex on input line 189.
-<tikz/imagen_tikz.pdf, id=543, 546.1735pt x 245.59053pt>
-File: tikz/imagen_tikz.pdf Graphic file (type pdf)
-<use tikz/imagen_tikz.pdf>
-Package pdftex.def Info: tikz/imagen_tikz.pdf  used on input line 189.
-(pdftex.def)             Requested size: 340.7011pt x 153.2014pt.
- [17
-
- <./tikz/imagen_tikz.pdf>]
-<../modelo_PD_2/figuras/G3.pdf, id=621, 578.16pt x 433.62pt>
-File: ../modelo_PD_2/figuras/G3.pdf Graphic file (type pdf)
-<use ../modelo_PD_2/figuras/G3.pdf>
-Package pdftex.def Info: ../modelo_PD_2/figuras/G3.pdf  used on input line 199.
-
-(pdftex.def)             Requested size: 306.6289pt x 229.96968pt.
-pdfTeX warning (ext4): destination with the same identifier (name{fig:g1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.199 	\end{frame}
-                  
-Overfull \vbox (12.2209pt too high) detected at line 199
- []
-
-[18
-
- <../modelo_PD_2/figuras/G3.pdf>]
-<../modelo_PD_2/figuras/G4.pdf, id=653, 578.16pt x 433.62pt>
-File: ../modelo_PD_2/figuras/G4.pdf Graphic file (type pdf)
-<use ../modelo_PD_2/figuras/G4.pdf>
-Package pdftex.def Info: ../modelo_PD_2/figuras/G4.pdf  used on input line 209.
-
-(pdftex.def)             Requested size: 306.6289pt x 229.96968pt.
+(pdftex.def)             Requested size: 265.74214pt x 199.3022pt.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:g1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.209 	\end{frame}
                   
-Overfull \vbox (12.2209pt too high) detected at line 209
+Overfull \vbox (11.60898pt too high) detected at line 209
  []
 
-[19
+[20
 
- <../modelo_PD_2/figuras/G4.pdf>]
-<../seguridad_IVM/Heat_Map_IVM.pdf, id=686, 578.16pt x 433.62pt>
+ <../modelo_PD_2/figuras/G2.pdf>] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+) [21
+
+] [22
+
+]
+Package standalone Info: generated file tikz/imagen_tikz.pdf newer then source 
+file tikz/imagen_tikz.tex on input line 230.
+<tikz/imagen_tikz.pdf, id=735, 546.1735pt x 245.59053pt>
+File: tikz/imagen_tikz.pdf Graphic file (type pdf)
+<use tikz/imagen_tikz.pdf>
+Package pdftex.def Info: tikz/imagen_tikz.pdf  used on input line 230.
+(pdftex.def)             Requested size: 340.6956pt x 153.19765pt.
+ [23
+
+ <./tikz/imagen_tikz.pdf>]
+<../modelo_PD_2/figuras/G3.pdf, id=813, 578.16pt x 433.62pt>
+File: ../modelo_PD_2/figuras/G3.pdf Graphic file (type pdf)
+<use ../modelo_PD_2/figuras/G3.pdf>
+Package pdftex.def Info: ../modelo_PD_2/figuras/G3.pdf  used on input line 243.
+
+(pdftex.def)             Requested size: 272.55751pt x 204.41676pt.
+pdfTeX warning (ext4): destination with the same identifier (name{fig:g1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.243 	\end{frame}
+                  
+Overfull \vbox (16.72348pt too high) detected at line 243
+ []
+
+[24
+
+ <../modelo_PD_2/figuras/G3.pdf>]
+<../modelo_PD_2/figuras/G4.pdf, id=845, 578.16pt x 433.62pt>
+File: ../modelo_PD_2/figuras/G4.pdf Graphic file (type pdf)
+<use ../modelo_PD_2/figuras/G4.pdf>
+Package pdftex.def Info: ../modelo_PD_2/figuras/G4.pdf  used on input line 254.
+
+(pdftex.def)             Requested size: 272.55751pt x 204.41676pt.
+pdfTeX warning (ext4): destination with the same identifier (name{fig:g1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.254 	\end{frame}
+                  
+Overfull \vbox (10.72354pt too high) detected at line 254
+ []
+
+[25
+
+ <../modelo_PD_2/figuras/G4.pdf>] [26
+
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+) [27
+
+]
+<figs/ivm_intoxicacion.png, id=938, 493.0922pt x 317.68687pt>
+File: figs/ivm_intoxicacion.png Graphic file (type png)
+<use figs/ivm_intoxicacion.png>
+Package pdftex.def Info: figs/ivm_intoxicacion.png  used on input line 280.
+(pdftex.def)             Requested size: 165.3478pt x 106.52876pt.
+ [28
+
+ <./figs/ivm_intoxicacion.png>]
+<../seguridad_IVM/Heat_Map_IVM.pdf, id=971, 578.16pt x 433.62pt>
 File: ../seguridad_IVM/Heat_Map_IVM.pdf Graphic file (type pdf)
 <use ../seguridad_IVM/Heat_Map_IVM.pdf>
 Package pdftex.def Info: ../seguridad_IVM/Heat_Map_IVM.pdf  used on input line 
-219.
-(pdftex.def)             Requested size: 272.5619pt x 204.41676pt.
- [20
+290.
+(pdftex.def)             Requested size: 272.55751pt x 204.41676pt.
+ [29
 
  <../seguridad_IVM/Heat_Map_IVM.pdf>]
 (presentacion.bbl
@@ -1321,11 +1374,11 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
 .
  ("C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
-Overfull \vbox (139.25122pt too high) detected at line 223
- []
+)) [30
 
-[21
+]
+[31
+
 
 ]
 \tf@nav=\write6
@@ -1337,53 +1390,55 @@ Overfull \vbox (139.25122pt too high) detected at line 223
 \tf@snm=\write8
 \openout8 = `presentacion.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 305.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 305.
  (presentacion.aux
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 305.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 305.
 Package rerunfilecheck Info: File `presentacion.out' has not changed.
-(rerunfilecheck)             Checksum: 6D051B6BCFA6518831BA2610305B3C2B;204.
+(rerunfilecheck)             Checksum: B2CAB165F635BBC8517BB02C338F394A;248.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 21691 strings out of 480790
- 403562 string characters out of 2907059
- 672057 words of memory out of 3000000
- 37037 multiletter control sequences out of 15000+200000
- 600354 words of font info for 67 fonts, out of 3000000 for 9000
+ 21939 strings out of 480790
+ 409007 string characters out of 2907059
+ 677785 words of memory out of 3000000
+ 37236 multiletter control sequences out of 15000+200000
+ 633363 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,15n,70p,808b,923s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 58i,15n,67p,798b,923s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTe
-X/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb
-><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiK
-TeX/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
-lm/lmss10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Pro
-gram Files/MiKTeX/fonts/type1/public/lm/lmss17.pfb><C:/Program Files/MiKTeX/fon
-ts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lms
-sbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsso10.pfb><C:/Progra
-m Files/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/lm/lmsso8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt
-12.pfb>
-Output written on presentacion.pdf (21 pages, 2731066 bytes).
+X/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/
+lm-mathex.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program
+ Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Fil
+es/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
+lm/lmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX/fonts/t
+ype1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmss10.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Program Files/
+MiKTeX/fonts/type1/public/lm/lmss17.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
+blic/lm/lmss8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><
+C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsso10.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/lm/lmsso8.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
+c/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt8.pfb>
+Output written on presentacion.pdf (31 pages, 2801915 bytes).
 PDF statistics:
- 820 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1145 PDF objects out of 1200 (max. 8388607)
+ 88 named destinations out of 1000 (max. 500000)
+ 184 words of extra memory for PDF output out of 10000 (max. 10000000)
 

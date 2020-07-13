@@ -1,4 +1,8 @@
-\documentclass[12pt]{beamer}
+\documentclass[12pt,xcolor=dvipsnames]{beamer}
+\usetheme{Madrid}
+\usepackage{xcolor}
+\usecolortheme[named=Green]{structure}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -8,18 +12,27 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{multicol}
+
 % Insertar un gráfico standalone
 \usepackage[mode=buildnew]{standalone}
-\usetheme{Madrid}
+
 % Paquete de Referenciación Natbib
 \usepackage[numbers, round, sort, sectionbib]{natbib}
 \renewcommand{\bibsection}{} % Para quitar la palabra bibliografía como título de esta sección o colocar otra. 
 \setcitestyle{square}
 \bibliographystyle{vancouver}
 
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Contenido}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
 \begin{document}
 	\author[Daniel Parra]{Daniel S. Parra G.}
-	\title[IVM en el tratamiento de infección]{Ivermectina en el tratamiento de infección por SARS-CoV-2}
+	\title[IVM en el tratamiento de Covid-19]{Ivermectina en el tratamiento de infección por SARS-CoV-2}
 	\subtitle{Simulación PKPD-VK}
 	%\logo{}
 	%\institute[]{Universidad Nacional de Colombia}
@@ -31,8 +44,8 @@
 		\maketitle
 	\end{frame}
 	
-	\begin{frame}{Contenido}
-		\tableofcontents[currentsection]
+	\begin{frame}\frametitle{Contenido}
+		\tableofcontents
 	\end{frame}
 	
 	\section{Introducción}
@@ -140,9 +153,12 @@
 	
 	\begin{frame}
 		\frametitle[]{Experimento mental}\framesubtitle{Farmacodinamia}
-		Que tal si evaluamos la farmacodinamia, ya con el efecto que tendrían estas concentraciones. \\
+		\small
+		Que tal si evaluamos la farmacodinamia, ya con el efecto que tendrían estas concentraciones. Podemos utilizar el modelo PK de Duthaler et al \cite{Duthaler2019}. \\
 		\vspace{2em}
-		Si consideramos una dosis base de 12mg q8h (que ya es bastante alta p.ej. en escabiosis (piojos) se utilizan dos dosis de $200~\mu\mathrm{g/kg/dosis}$ separadas por una semana), y la multiplicamos por 2, 5, 10, y 15 veces se tienen los perfiles PK mostrados en la diapositiva siguiente. 
+		Si consideramos una dosis base de 12mg q8h por 7 días (que ya es bastante alta p.ej. en escabiosis (piojos) se utilizan dos dosis de $200~\mu\mathrm{g/kg/dosis}$ separadas por una semana), y la multiplicamos por 10, 50, 100, y 200 veces se tienen los perfiles PK mostrados en la diapositiva siguiente. \\
+		\vspace{2em}
+		Ahora tenemos que tener en cuenta la fracción libre ($\simeq 7\%$) que se considera como farmacológicamente activa. 
 	\end{frame}
 
 	\begin{frame}	
@@ -153,6 +169,21 @@
 			%\caption{}
 			\label{fig:g1}
 		\end{figure}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle[short frame title]{Modelo PK-PD}
+		\footnotesize
+		Si ahora consideramos un modelo PK-PD con unión directa y una ecuación de unión (entre el efecto y la concentración) de tipo Hill: 
+		
+		\begin{equation}\label{Eq_1}
+			\mathrm{E} = 1 - \left(\frac{R_0\times\mathrm{C_P}^\gamma}{\mathrm{C_P}^\gamma + \mathrm{IC_{50}}}\right)
+		\end{equation}
+		
+		Para obtener una estimación de los parámetros, se tomaron los datos reportados en el artículo de Caly et al \cite{Caly2020} y se utilizó un algoritmo bayesiano (debido a que son muy pocos datos). \\
+		\vspace{2em}
+		\textbf{Supuesto}: las concentraciones alcanzadas en el pulmón son similares a las alcanzadas en plasma, y no existen demoras temporales en la presentación del efecto.
+		
 	\end{frame}
 	
 	\begin{frame}
@@ -166,16 +197,26 @@
 	\end{frame}
 	
 	\begin{frame}	
-		\frametitle{Farmacodinámica}		
+		\frametitle{Farmacodinámica}	
+		\scriptsize Si se realiza un vínculo directo entre las observaciones PK, y el efecto relativo en el Gen E - Cultivo Celular (panel A) en los modelos se puede tener una descripción del efecto vs el tiempo, para diferentes regímenes de dosificación:	\\
+		%
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.9\linewidth]{../modelo_PD_2/figuras/G2}
+			\includegraphics[width=0.78\linewidth]{../modelo_PD_2/figuras/G2}
 			%\caption{}
 			\label{fig:g1}
 		\end{figure}
 	\end{frame}
 	
 	\section{Cinética viral}
+	\begin{frame}
+		\frametitle{Cinética viral}
+		\footnotesize Por último, se debe considerar la cinética de crecimiento viral del SARS-CoV-2. Para esto se puede utilizar un modelo de cinética viral (VK) simple, en ausencia de modelos de farmacología de sistemas más complejos. \\
+		\vspace{2em}
+		Se podría tomar la aproximación a la VK de: Kim KS, Ejima K, Ito Y, et al. Modelling SARS-CoV-2 Dynamics: Implications for Therapy. medRxiv 2020; 2020.03.23.20040493.\\
+		\vspace{2em}
+		Este modelo tiene en cuenta la fracción de células no infectadas en el pulmón ($T/T_0$) y la concentración de partículas virales en hisopado de garganta y aspirado de nasofarínge esputo o traqueal.
+	\end{frame}
 	
 	\begin{frame}
 		\frametitle{Modelo combinado}
@@ -189,23 +230,53 @@
 	\end{frame}
 	
 	\begin{frame}	
-		\frametitle{Cinética viral (1)}		
+		\frametitle{Cinética Viral (1)}		
+		\scriptsize
+		En este caso se tiene que una dosis de 2400mg de IVM sería capaz de disminuir hasta 2 logs al pico máximo de la carga viral. Por otra parte, un dosis de 1200mg q8h sería capaz de disminuir la concentración pero habría una recaída a los 10 días de tratamiento. 
+		
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.9\linewidth]{../modelo_PD_2/figuras/G3}
+			\includegraphics[width=0.80\linewidth]{../modelo_PD_2/figuras/G3}
 			%\caption{}
 			\label{fig:g1}
 		\end{figure}
 	\end{frame}
 
 	\begin{frame}	
-		\frametitle{Cinética viral (2)}	
+		\frametitle{Experimento mental}\framesubtitle{Cinética Viral (2)}
+		\scriptsize Sólo una dosis de 2400mg sería capaz de evitar el daño pulmonar por Covid-19.
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.9\linewidth]{../modelo_PD_2/figuras/G4}
+			\includegraphics[width=0.80\linewidth]{../modelo_PD_2/figuras/G4}
 			%\caption{}
 			\label{fig:g1}
 		\end{figure}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Conclusiones}
+		\begin{block}{}
+		En conclusión, la ivermectina podría tener utilidad contra la infección de manera hipotética con \textbf{dosis} hasta 33 veces más alta con las consideraciones farmacocinéticas, y hasta 200 veces más altas con las consideraciones del modelo PKPD-VK. 	
+		\end{block}
+		\vspace{2em}
+		Por todo esto, no hay factibilidad de su utilización (\textbf{es imposible}), y con estas consideraciones no vale la pena realizar ensayos clínicos.\\
+	\end{frame}
+
+	\section{Seguridad}
+	\begin{frame}
+		\frametitle{Seguridad}
+		\begin{multicols}{2}
+			\footnotesize Por último, se debe tener en cuenta que no es un fármaco con inocuidad absoluta, en intoxicaciones se ha asociado a casos de neurotoxicidad, alteraciones dermatológicas, y hematológicas. \\
+			\vspace{2em}
+			Los casos de intoxicaciones se han reportado en animales \cite{Swor2009,Saqib2015,Sidhu2019} y en humanos \cite{Soyuncu2007,Chandler2018}. 
+			
+			\columnbreak			
+			\begin{figure}
+				\centering
+				\includegraphics[width=1.0\linewidth]{figs/ivm_intoxicacion}
+				\label{fig:ivmintoxicacion}
+			\end{figure}
+		\end{multicols}	
 	\end{frame}
 	
 	\begin{frame}
@@ -218,7 +289,17 @@
 		\end{figure}
 	\end{frame}
 
-	\begin{frame}{Referencias}
+% Reportados para ivermectina
+%	    drug name                                                      event count expected count         stat  rank          fdr
+%	1 IVERMECTINA                                 HIPERTENSION EMPEORAMIENTO     1   0.0002911391 1.302292e-13  5215 0.000000e+00
+%	2 IVERMECTINA                                     CEFALEA  EMPEORAMIENTO     1   0.0013213235 5.239426e-10  7523 5.301558e-13
+%	3 IVERMECTINA DURACION INCORRECTA DE LA ADMINISTRACION DE UN MEDICAMENTO     1   0.0018812063 3.408823e-09  8435 3.074018e-11
+%	4 IVERMECTINA                                     ERUPCION MEDICAMENTOSA     1   0.0075472205 2.484147e-06 14013 4.515689e-07
+%	5 IVERMECTINA                  USO DE UN MEDICAMENTO FUERA DE INDICACION     1   0.0085550096 4.208731e-06 14726 8.855748e-07
+	
+
+	\begin{frame}[allowframebreaks]{Referencias}
+		\scriptsize
 		\bibliography{referencias}
 	\end{frame}
 \end{document}

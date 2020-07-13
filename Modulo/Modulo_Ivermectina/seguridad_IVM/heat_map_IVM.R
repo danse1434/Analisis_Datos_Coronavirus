@@ -1,5 +1,7 @@
 require(tidyverse)
 require(treemapify)
+require(LBE)
+require(PhViD)
 
 data <- read_csv('ivermectin_ADR_profile.csv')
 
@@ -66,5 +68,28 @@ ggplot(data2, aes(area=secu_numb, label=secu_text,
   
 
 ggsave('Heat_Map_IVM.pdf', plot = G1, device = 'pdf', height = 6, width = 8)
+
+
+
+
+
+#-------------------------------------------------------------------------------#
+# Eventos adversos Colombia -----------------------------------------------------
+#-------------------------------------------------------------------------------#
+df1 <- read_csv('EVENTOS_ADVERSOS_DE_MEDICAMENTOS.csv') 
+
+df2 <- df1 %>% 
+  as_tibble(.name_repair = 'universal') %>% 
+  group_by(Descripción.ATCMedicamento, DescripcionWhoart) %>% 
+  summarise(N = as.double(n()))
+
+df3 <- df2 %>% 
+  as.data.frame() %>% 
+  as.PhViD()
+
+df_ROR <- ROR(df3)
+
+PhViD.search(df_ROR, DRUG = 'IVERMECTINA')
+
 
 

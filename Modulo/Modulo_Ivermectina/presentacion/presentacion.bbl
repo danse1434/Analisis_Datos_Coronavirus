@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Caly2020}
 Caly L, Druce JD, Catton MG, Jans DA, Wagstaff KM.
@@ -38,5 +38,33 @@ Smit MR, Ochomo EO, Waterhouse D, Kwambai TK, Abong'o BO, Bousema T, et~al.
 Duthaler U, Leisegang R, Karlsson MO, Kr{\"{a}}henb{\"{u}}hl S, Hammann F.
 \newblock {The effect of food on the pharmacokinetics of oral ivermectin}.
 \newblock \emph{J Antimicrob Chemother}. 2020;75(2):438--440.
+
+\bibitem{Swor2009}
+Swor TM, Whittenburg JL, Chaffin MK.
+\newblock {Ivermectin toxicosis in three adult horses}.
+\newblock \emph{J Am Vet Med Assoc}. 2009;235(5):558--562.
+
+\bibitem{Saqib2015}
+Saqib M, Abbas G, Mughal MN.
+\newblock {Successful management of ivermectininduced blindness in an African
+  lion (Panthera leo) by intravenous administration of a lipid emulsion}.
+\newblock \emph{BMC Vet Res}. 2015;11(1):1--7.
+\newblock Disponible en: \url{http://dx.doi.org/10.1186/s12917-015-0603-6}.
+
+\bibitem{Sidhu2019}
+Sidhu S, Narang A, Dua K, Saini N.
+\newblock {Successful management of ivermectin toxicity in a Persian cat}.
+\newblock \emph{Indian J Vet Med}. 2019;39(1):59--60.
+
+\bibitem{Soyuncu2007}
+Soyuncu S, Oktay C, Berk Y, Eken C.
+\newblock {Abamectin intoxication with coma and hypotension}.
+\newblock \emph{Clin Toxicol}. 2007;45(3):299--300.
+
+\bibitem{Chandler2018}
+Chandler RE.
+\newblock {Serious neurological adverse events after ivermectin-do they occur
+  beyond the indication of onchocerciasis?}
+\newblock \emph{Am J Trop Med Hyg}. 2018;98(2):382--388.
 
 \end{thebibliography}

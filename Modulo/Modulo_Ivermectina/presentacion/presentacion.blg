@@ -21,45 +21,55 @@ You can't pop an empty literal stack for entry Smit2019
 while executing---line 1871 of file vancouver.bst
 You can't pop an empty literal stack for entry Duthaler2020
 while executing---line 1871 of file vancouver.bst
-You've used 6 entries,
+You can't pop an empty literal stack for entry Swor2009
+while executing---line 1871 of file vancouver.bst
+You can't pop an empty literal stack for entry Saqib2015
+while executing---line 1871 of file vancouver.bst
+You can't pop an empty literal stack for entry Sidhu2019
+while executing---line 1871 of file vancouver.bst
+You can't pop an empty literal stack for entry Soyuncu2007
+while executing---line 1871 of file vancouver.bst
+You can't pop an empty literal stack for entry Chandler2018
+while executing---line 1871 of file vancouver.bst
+You've used 11 entries,
             3195 wiz_defined-function locations,
-            692 strings with 6566 characters,
-and the built_in function-call counts, 18449 in all, are:
-= -- 2301
-> -- 140
+            737 strings with 7653 characters,
+and the built_in function-call counts, 26532 in all, are:
+= -- 3324
+> -- 200
 < -- 0
-+ -- 91
-- -- 35
-* -- 1650
-:= -- 1979
-add.period$ -- 25
-call.type$ -- 6
++ -- 125
+- -- 50
+* -- 2298
+:= -- 2858
+add.period$ -- 46
+call.type$ -- 11
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 1347
-empty$ -- 1790
-format.name$ -- 41
-if$ -- 4287
+cite$ -- 11
+duplicate$ -- 2060
+empty$ -- 2562
+format.name$ -- 60
+if$ -- 6187
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 81
-newline$ -- 34
-num.names$ -- 6
-pop$ -- 146
+int.to.str$ -- 11
+missing$ -- 136
+newline$ -- 60
+num.names$ -- 11
+pop$ -- 254
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 144
+skip$ -- 237
 stack$ -- 0
-substring$ -- 4006
-swap$ -- 170
+substring$ -- 5465
+swap$ -- 290
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 74
-width$ -- 7
-write$ -- 76
-(There were 6 error messages)
+while$ -- 124
+width$ -- 13
+write$ -- 138
+(There were 11 error messages)
