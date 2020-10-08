@@ -33,16 +33,17 @@ aux_param <- function(ls, pal="Dark2", cond=1) {
                        linetype = guide_legend(!!!y),
                        shape    = guide_legend(!!!y))    )), 
     # Otras configuraciones
-    coord_cartesian(xlim = c(0, 140), ylim = c(0, 1.0E6)),
+    coord_cartesian(xlim = c(0, 275), ylim = c(0, 3E6)),
     xlab("Días desde primer reporte"),
     ylab("Casos reportados"),
     theme_bw(), 
     theme(
-      legend.position = c(0.30, 0.75),
+      legend.position = c(0.30, 0.85),
       legend.title = element_blank(),
       legend.spacing.y = unit(1.0, 'mm'),
       legend.text = element_text(size = 8, margin = margin(t = 0.1)),
-      legend.margin = margin(0.1, 0.1, 0.1, 0.1))
+      legend.margin = margin(0.1, 0.1, 0.1, 0.1), 
+      legend.background = element_rect(fill=NA))
   )
   
   n <- append(n, m, after = 1)

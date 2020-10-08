@@ -3,16 +3,17 @@
 ID, Fecha, Efectividad, Descripcion
 01, 2020-03-06, 1.00, Inicio Primer Caso
 02, 2020-03-12, 0.88, Emergencia Sanitaria 1
-01, 2020-03-17, 0.88, Emergencia EEESE 1
-01, 2020-03-25, 0.88, Aislamiento Preventivo Obligatorio 1
-01, 2020-04-13, 0.88, Aislamiento Preventivo Obligatorio 2
-01, 2020-04-27, 0.88, Aislamiento Preventivo Obligatorio 3
-01, 2020-05-06, 0.88, Emergencia EEESE 2
-01, 2020-05-11, 0.88, Aislamiento Preventivo Obligatorio 4
-01, 2020-05-25, 0.88, Aislamiento Preventivo Obligatorio 5
-01, 2020-05-30, 0.88, Emergencia Sanitaria 2
-01, 2020-06-01, 0.88, Aislamiento Preventivo Obligatorio 6
-01, 2020-07-01, 0.88, Aislamiento Preventivo Obligatorio 7
-01, 2020-07-15, 0.88, Aislamiento Preventivo Obligatorio 8
-
-
+03, 2020-03-17, 0.88, Emergencia EEESE 1
+04, 2020-03-25, 0.88, Aislamiento Preventivo Obligatorio 1
+05, 2020-04-13, 0.88, Aislamiento Preventivo Obligatorio 2
+06, 2020-04-27, 0.88, Aislamiento Preventivo Obligatorio 3
+07, 2020-05-06, 0.88, Emergencia EEESE 2
+08, 2020-05-11, 0.88, Aislamiento Preventivo Obligatorio 4
+09, 2020-05-25, 0.88, Aislamiento Preventivo Obligatorio 5
+10, 2020-05-30, 0.88, Emergencia Sanitaria 2
+11, 2020-06-01, 0.88, Aislamiento Preventivo Obligatorio 6
+12, 2020-07-01, 0.88, Aislamiento Preventivo Obligatorio 7
+13, 2020-07-15, 0.88, Aislamiento Preventivo Obligatorio 8
+14, 2020-08-01, 0.88, Aislamiento Preventivo Obligatorio 9
+15, 2020-09-01, 0.78, Aislamiento selectivo con Distanciamiento Individual 1
+16, 2020-10-01, 0.78, Aislamiento selectivo con Distanciamiento Individual 2

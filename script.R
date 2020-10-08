@@ -112,9 +112,9 @@ G2 <- data1 %>%
 G1_comp <- (G1 + G2) +
   plot_annotation(
     title = 'Reporte de casos acumulados COVID-19',
-    subtitle = 'Primeros 140 días desde reporte en países de referencia',
+    subtitle = '275 días desde primer reporte en países de referencia',
     caption = paste0(
-      "Estos números no dicen nada sobre el número de personas infectadas, ",
+      "Estos números no reflejan la totalidad de personas infectadas, ",
       "sólo el número de personas quienes han sido positivas. \n",
       "Este no es un gráfico oficial, sólo informativo. ",
       "Datos tomados de: https://github.com/CSSEGISandData/COVID-19 \n",
@@ -205,7 +205,7 @@ G_THALF <- datalist %>%
   xlab('Día del año (detección primer caso)') +
   labs(title = 'Modelamiento tiempo de duplicación aparente por país', 
        subtitle = expression(T[1/2]~'duplicación de casos aparente por regresión no lineal vs día del año detección primer caso')) + 
-  coord_cartesian(ylim = c(0, 15), xlim = c(0,120)) +
+  coord_cartesian(ylim = c(0, 30), xlim = c(0,130)) +
   geom_point(data = filter(datalist, Location=='Colombia'),
              col = 'red') +
   geom_text_repel(aes(label = Location),
@@ -238,7 +238,7 @@ c3 <- list(
 
 ##########################################################################-
 # Creación de objeto G3 en escala logarítmica
-min_brks <- rep(1:9, 8)*(10^rep(0:7, each=9))
+min_brks <- rep(1:9, 10)*(10^rep(0:9, each=9))
 
 G3 <- data1 %>%
   # Filtrar países de interés
@@ -252,13 +252,13 @@ G3 <- data1 %>%
   geom_point(data = . %>%
                group_by(., Location) %>%
                slice(which.max(dd))) + 
-  scale_y_log10(breaks = 10^(1:6), minor_breaks = min_brks,
+  scale_y_log10(breaks = 10^(1:7), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(ls = c3, cond = 2) +
-  coord_cartesian(xlim = c(0, 140), ylim = c(1E0,2E6)) + 
+  coord_cartesian(xlim = c(0, 270), ylim = c(1E0,1E7)) + 
   labs(title = 'Curvas epidémicas de COVID19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso índice.", 
-       caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
+       caption = paste0("Estos números reflejan el total de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
                         "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
                         a))+
   geom_dl(aes(label = Location),
@@ -275,11 +275,11 @@ G3 <- data1 %>%
 
 legend_dup <- tribble(
       ~r,     ~t,             ~label, ~rot,
-  21.7, 50.000,   "Duplica diario",  71L,
-  33.8, 28.489,  "Duplica cada 2d",  60L,
-  54.8, 20.388,  "Duplica cada 3d",   0L,
-  55.4,  6.888,  "Duplica cada 7d",   0L,
-  75.0,  1.185, "Duplica cada mes",   0L
+  22.7, 50.000,   "Duplica diario",  81L,
+  35.8, 28.489,  "Duplica cada 2d",  73L,
+  60.0, 20,  "Duplica cada 3d",   68L,
+  45.0,  7.000,  "Duplica cada 7d",   48L,
+  200,  1.185, "Duplica cada mes",   0L
   ) %>% 
   mutate(x = r*cos(t*pi/180),
          y = 2^(r*sin(t*pi/180)))
@@ -336,10 +336,10 @@ G5 <- data3 %>%
   scale_y_log10(breaks = 10^(1:6), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(c3, cond=2) +
-  coord_cartesian(xlim = c(0, 140), ylim = c(1E2, 2E6)) + 
+  coord_cartesian(xlim = c(0, 270), ylim = c(1E2, 1E7)) + 
   labs(title = 'Curvas epidémicas de COVID-19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso 100.", 
-       caption = paste0("Estos números no dicen nada sobre el número de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
+       caption = paste0("Estos números no reflejan el total de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
                         "Este no es un gráfico oficial, sólo informativo. Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19 \n",
                         a)) +
   geom_dl(aes(label = Location),
@@ -356,11 +356,11 @@ G5 <- data3 %>%
 
 legend_dup1 <- tribble(
       ~r,     ~t,             ~label, ~rot,
-   15.00, 42.306,   "Duplica diario",  75L,
-   27.00, 24.000,  "Duplica cada 2d",  64L,
-   46.00, 15.331,  "Duplica cada 3d",   0L,
-   90.00,  7.5,  "Duplica cada 7d",   0L,
-   80.00,  1.349, "Duplica cada mes",   0L
+      16.7, 50.000,   "Duplica diario",  81L,
+      28.8, 28.489,  "Duplica cada 2d",  75L,
+      40.0, 20,  "Duplica cada 3d",   75L,
+      45.0,  7.000,  "Duplica cada 7d",   48L,
+      200,  1.500, "Duplica cada mes",   0L
   ) %>% 
   mutate(x = r * cos(t * pi / 180), 
          y = 1E2 * 2 ^ (r * sin(t * pi / 180)))

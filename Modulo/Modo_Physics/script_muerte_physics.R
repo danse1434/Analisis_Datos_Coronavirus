@@ -82,7 +82,7 @@ conv_date <- function(date) {
   x <- date %>% ymd()
   
   a = x %>% day()
-  b = x %>% month(label = TRUE, abbr = TRUE)
+  b = x %>% month(label = TRUE, abbr = FALSE)
   c = x %>% year()
   
   return(paste(a, b, c, sep = '-'))
@@ -104,7 +104,7 @@ conv_muertes <- function(x) {
   if (isEmpty(z)) {return(0)} else {return(z)}
 }
 
-conv_muertes("2020-03-21")
+# conv_muertes("2020-03-21")
 
 ##########################################################################-
 # Gráfico de comparación países de referencia -----------------------------
@@ -159,7 +159,7 @@ G_mp <- data5 %>%
   theme(panel.grid = element_line(colour = 'white'))
 
 # Visualización previa de gráfico base
-# G_mp
+G_mp
 
 ##########################################################################-
 # Elaboración de GIF ------------------------------------------------------
