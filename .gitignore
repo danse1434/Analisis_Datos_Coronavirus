@@ -5,4 +5,5 @@ Dias_aparente.pdf
 .Rproj.user/*
 **/Modulo/9_EV_DANE/data/*
 .Rproj.user
+*.csv
 Modulo/Modulo_Ivermectina/seguridad_IVM/EVENTOS_ADVERSOS_DE_MEDICAMENTOS.csv
