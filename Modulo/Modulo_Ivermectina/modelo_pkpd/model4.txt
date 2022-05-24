@@ -1,0 +1,47 @@
+[LONGITUDINAL]
+input = {V1, V2, Cl, Q, Ktr, Mtt, ka, p}
+
+PK:
+; Transformacion de parametros
+V = V1 
+k = Cl/V1 
+k12 = Q/V1 
+k21 = Q/V2
+
+; Definicion del modelo PK
+compartment(cmt=1, volume=V, concentration=Cc)
+; compartment(cmt=2, volume=V2, concentration = Cp)
+absorption(adm=1, cmt=1, Ktr, Mtt, ka, p)
+peripheral(k12, k21)
+elimination(cmt=1, k)
+
+EQUATION:
+odeType = stiff
+
+; Conversion a ng/mL
+;y1 = Clc * 1000 
+
+
+OUTPUT:
+output = Cc
+
+[INDIVIDUAL]
+
+input = {V1_pop, omega_V1, V2_pop, omega_V2, 
+        Cl_pop, omega_Cl, Q_pop, omega_Q,
+        Mtt_pop, omega_Mtt}
+
+
+DEFINITION:
+V1 = {distribution = lognormal, reference = V1_pop, sd = omega_V1}
+V2 = {distribution = lognormal, reference = V2_pop, sd = omega_V2}
+
+Cl = {distribution = lognormal, reference = Cl_pop, sd = omega_Cl}
+Q = {distribution = lognormal, reference = Q_pop, sd = omega_Q}
+
+Mtt = {distribution = lognormal, reference = Mtt_pop, sd = omega_Mtt}
+
+
+
+
+

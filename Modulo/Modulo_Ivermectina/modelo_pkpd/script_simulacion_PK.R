@@ -206,7 +206,8 @@ cpt <- paste(
   "[M3] Smit MR, Ochomo EO, \nWaterhouse D, Kwambai TK, Abong’o BO, Bousema T, et al. Pharmacokinetics",
   "-Pharmacodynamics of High-Dose Ivermectin \nwith Dihydroartemisinin-Piperaquine on ",
   "Mosquitocidal Activity and QT-Prolongation (IVERMAL). Clin Pharmacol Ther. \n2019;105(2):388–401. ",
-  "[M4] Duthaler U, Leisegang R, Karlsson MO, Krähenbühl S, Hammann F. The effect of food on the pharmacokinetics of oral ivermectin. J Antimicrob Chemother. 2020;75(2):438–40. "
+  "[M4] Duthaler U, Leisegang R, Karlsson MO, Krähenbühl S, Hammann F. The effect of food on the \n",
+  "pharmacokinetics of oral ivermectin. J Antimicrob Chemother. 2020;75(2):438–40. "
 )
 
 labv <- c('M1: Duthaler U et al.',
@@ -244,6 +245,6 @@ G1
 
 # Almacenamiento de gráfico
 ggsave(filename = 'PK2_opcional8.pdf', plot = G1, device = 'pdf', 
-       width = 8, height = 6+0.3, units = 'in') 
+       width = 8, height = 6+0.5, units = 'in') 
 
 
