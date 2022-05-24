@@ -255,7 +255,7 @@ G3 <- data1 %>%
   scale_y_log10(breaks = 10^(1:7), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(ls = c3, cond = 2) +
-  coord_cartesian(xlim = c(0, 270), ylim = c(1E0,1E7)) + 
+  coord_cartesian(xlim = c(0, 500), ylim = c(1E0,1E8)) + 
   labs(title = 'Curvas epidémicas de COVID19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso índice.", 
        caption = paste0("Estos números reflejan el total de personas infectadas, sólo el número de personas quienes han sido positivas. \n",
@@ -336,7 +336,7 @@ G5 <- data3 %>%
   scale_y_log10(breaks = 10^(1:6), minor_breaks = min_brks,
                 labels = scales::trans_format("log10", scales::math_format(10^.x)) ) +
   aux_param(c3, cond=2) +
-  coord_cartesian(xlim = c(0, 270), ylim = c(1E2, 1E7)) + 
+  coord_cartesian(xlim = c(0, 500), ylim = c(1E2, 1E8)) + 
   labs(title = 'Curvas epidémicas de COVID-19 en países seleccionados', 
        subtitle = "Incluye casos relacionados, importados, y en estudio. Escala logarítmica / desde caso 100.", 
        caption = paste0("Estos números no reflejan el total de personas infectadas, sólo el número de personas quienes han sido positivas. \n",

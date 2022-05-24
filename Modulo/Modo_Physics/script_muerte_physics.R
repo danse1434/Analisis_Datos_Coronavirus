@@ -82,7 +82,7 @@ conv_date <- function(date) {
   x <- date %>% ymd()
   
   a = x %>% day()
-  b = x %>% month(label = TRUE, abbr = FALSE)
+  b = x %>% month(label = TRUE, abbr = TRUE)
   c = x %>% year()
   
   return(paste(a, b, c, sep = '-'))
@@ -141,8 +141,8 @@ G_mp <- data5 %>%
       caption = paste0("Adaptado a partir de Aatish Bhatia en colaboración con Minute Physics: https://aatishb.com/covidtrends \n",
                        "Datos tomados de: ", "https://github.com/CSSEGISandData/COVID-19. ",
                        a)) +
-  coord_cartesian(ylim = c(10, 10 ^ (6)), xlim = c(10, 10 ^ (7))) +
-  scale_y_log10(breaks = 10 ^ (0:6),
+  coord_cartesian(ylim = c(10, 10 ^ (7)), xlim = c(10, 10 ^ (7))) +
+  scale_y_log10(breaks = 10 ^ (0:7),
                 labels = trans_format("log10", math_format(10 ^ .x))) +
   scale_x_log10(breaks = 10 ^ (0:7),
                 labels = trans_format("log10", math_format(10 ^ .x))) +
